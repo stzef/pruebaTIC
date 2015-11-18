@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="/public/css/styles.css">
+	<title>
+		{% block title %}{% endblock title %}
+	</title>
+
+
+</head>
+
+<body>
+	<nav>
+		<ul>
+			<li>pruebasTic</li>
+		</ul>
+
+		<ul>
+			<li>user</li>
+			<li>Login</li>
+		</ul>
+
+	</nav>
+	{% block contentSpecial %}
+
+	{% endblock  %}
+	<section class="contentWidth">
+		{% block content %}
+
+		{% endblock  %}
+	</section>
+	<footer>
+		<ul>
+			<li>Desarrollado por SistematizarEF</li>
+		</ul>
+	</footer>
+</body>
+
+</html>
