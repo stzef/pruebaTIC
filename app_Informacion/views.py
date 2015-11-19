@@ -8,3 +8,6 @@ def inicio(request):
 	'nombreProyecto' : settings.NOMBRE_PROYECTO
 	}
 	return render(request, 'inicio.html',context)
+
+def competencias(request):
+	return render(request, 'competencias.html')

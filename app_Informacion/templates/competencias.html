@@ -4,24 +4,24 @@
 Competencias
 {% endblock title %}
 
-{% block contentSpecial %}
-<section class="backgroundImage">
+{% block content %}
+<section >
 	<header>
 
-		<h1>Competencias  en Tic</h1>
-		<section>
-			<article>
+		<h1 class="textCenter">Competencias  en Tic</h1>
+		<section class="columnas">
+			<article class="columnas-2">
+				<h2 class="textCenter">Apropiacion</h2>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque praesentium deserunt beatae itaque maxime sunt aspernatur veritatis, quia porro natus saepe aut dolorum, nihil eveniet ad aliquam deleniti quae accusantium.</p>
-				<button>Apropiacion</button>
+				<button class="centerMargin btn btnConfirmar"><a href="{% url 'pruebaApropiacion' %}">Ir a</a></button>
 			</article>
-			<article>
+			<article class="columnas-2">
+				<h2 class="textCenter">Solucion</h2>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae aspernatur cupiditate veritatis fuga dolores error, at illo iusto rem asperiores quis quibusdam id corporis explicabo minima quaerat sequi perferendis ut.</p>
-				<button>Solucion</button>
+				<button class="centerMargin btn btnConfirmar"><a href="{% url 'pruebaSolucion' %}">Ir a</a></button>
 			</article>
 		</section>
 	</header>
 </section>
 
-{% endblock  %}
-{% block content %}
 {% endblock  %}

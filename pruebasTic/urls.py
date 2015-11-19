@@ -7,7 +7,8 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
-    url('', include('app_Actividades.urls')),
+    url('', include('app_Informacion.urls')),
+    url('', include('app_Pruebas.urls')),
 	url(r'^public/(?P<path>.*)$','django.views.static.serve',
 	{'document_root':settings.MEDIA_ROOT,}),
 )

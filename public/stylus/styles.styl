@@ -1,4 +1,8 @@
+@import url(https://fonts.googleapis.com/css?family=Lato);
+
+@import "OOCSS.styl"
 @import "inicio.styl"
+@import "globos.styl"
 body
 	margin 0
 
@@ -26,3 +30,74 @@ nav
 footer
 	background-color gray
 	padding 10px 0
+
+
+body
+	height 100%
+	font-size 16px
+	font-family 'Lato', sans-serif
+	margin 0
+
+object
+	width 100%
+	height 700px
+
+.elementoFormRequerido
+	-moz-box-shadow 0px 0px 1px 1px blue
+	-webkit-box-shadow 0px 0px 1px 1px blue
+	box-shadow 0px 0px 1px 1px blue
+
+.elementoForm:invalid
+	-moz-box-shadow 0px 0px 8px 1px red
+	-webkit-box-shadow 0px 0px 8px 1px red
+	box-shadow 0px 0px 8px 1px red
+
+.elementoForm:valid
+	-moz-box-shadow 0px 0px 8px 1px green
+	-webkit-box-shadow 0px 0px 8px 1px green
+	box-shadow 0px 0px 8px 1px green
+
+.centradoTotal
+	display flex
+	justify-content center
+	align-items center
+	flex-wrap wrap
+
+.heightCienPorCiento
+	height 100%
+
+.widthCienPorCiento
+	width 100%
+
+.formularioIdentificacion
+	color white
+
+.fondoFormularioIdentificacion
+	background-image url("../media/img/fondoFormularioIdentificacion3.jpg")
+	-webkit-filter blur(3px) opacity(.8)
+	filter blur(3px) opacity(.8)
+	top0
+	left 0
+.fondoSeccionPrincipal
+	background-attachment fixed
+	//background-image url("media/img/fondoFormularioIdentificacion1.jpg")
+	background-color #D47A6A
+	height 500px
+	h1
+		font-size 3em
+	p
+		font-size 1.5em
+
+.fondoSeccion
+	font-size 1.5em
+	background-position center
+	background-size cover
+	background-repeat no-repeat
+
+
+.positionAbsolute
+	position absolute
+
+.positionRelative
+	position relative
+
