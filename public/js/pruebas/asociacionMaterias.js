@@ -21,7 +21,8 @@ function deleteTag() {
 
 
 }
-dropzone.ondrop = function(evento) {
+
+function callbackDrop(evento) {
 
 	elementdrag.classList.add("disabled")
 	console.log('drop');
@@ -44,6 +45,8 @@ dropzone.ondrop = function(evento) {
 	tag.appendChild(dele)
 	zonetags.appendChild(tag)
 }
+
+dropzone.addEventListener("drop", callbackDrop,true)
 dropzone.ondragover = function(evento){
 	evento.effectAllow = "move"
 	evento.dropEfect = "move"
