@@ -1,8 +1,9 @@
-@import url(https://fonts.googleapis.com/css?family=Lato);
-
 @import "OOCSS.styl"
 @import "inicio.styl"
 @import "globos.styl"
+
+@import url(https://fonts.googleapis.com/css?family=Lato)
+
 body
 	margin 0
 
@@ -10,16 +11,31 @@ ul
 	padding 0
 	margin 0
 
+.linkWithoutDecoration
+	text-decoration none
+
 .contentWidth
 	max-width 1000px
 	margin 0 auto
 	padding 0 10px
+.logostzef
+	font-weight bold
+	.stzef
+		color #1EAC44
+
+.logoPruebaTIC
+	display block
+	margin 10px 0
+	font-weight bold
+	font-size 1.5rem
+	color black
 
 nav
-	background-color gray
+	background-color white
 	padding 10px 0
 	display flex
 	justify-content space-between
+	border-bottom 3px solid gray
 	ul
 		display flex
 		justify-content space-around
@@ -27,9 +43,19 @@ nav
 		li
 			list-style none
 			margin 0 10px
+			a
+				text-decoration none
+				color white
+button
+	a
+		text-decoration none
+		color white
+
 footer
-	background-color gray
+	background-color white
 	padding 10px 0
+	border-top 3px solid gray
+
 
 
 body
