@@ -1,11 +1,20 @@
 @import "OOCSS.styl"
 @import "inicio.styl"
-@import "globos.styl"
+@import "pruebas/asosciaionMaterias.styl"
+@import "pruebas/globos.styl"
 
 @import url(https://fonts.googleapis.com/css?family=Lato)
 
+html
+	height 100%
 body
 	margin 0
+	user-select none
+
+.totalbody
+	display flex
+	height 100%
+	flex-wrap wrap
 
 ul
 	padding 0
@@ -18,6 +27,7 @@ ul
 	max-width 1000px
 	margin 0 auto
 	padding 0 10px
+	max-height calc(100% - 112px)
 .logostzef
 	font-weight bold
 	.stzef
@@ -31,6 +41,8 @@ ul
 	color black
 
 nav
+	align-self flex-start
+	width 100%
 	background-color white
 	padding 10px 0
 	display flex
@@ -52,6 +64,8 @@ button
 		color white
 
 footer
+	align-self flex-end
+	width 100%
 	background-color white
 	padding 10px 0
 	border-top 3px solid gray
@@ -68,20 +82,7 @@ object
 	width 100%
 	height 700px
 
-.elementoFormRequerido
-	-moz-box-shadow 0px 0px 1px 1px blue
-	-webkit-box-shadow 0px 0px 1px 1px blue
-	box-shadow 0px 0px 1px 1px blue
 
-.elementoForm:invalid
-	-moz-box-shadow 0px 0px 8px 1px red
-	-webkit-box-shadow 0px 0px 8px 1px red
-	box-shadow 0px 0px 8px 1px red
-
-.elementoForm:valid
-	-moz-box-shadow 0px 0px 8px 1px green
-	-webkit-box-shadow 0px 0px 8px 1px green
-	box-shadow 0px 0px 8px 1px green
 
 .centradoTotal
 	display flex
@@ -119,7 +120,6 @@ object
 	background-position center
 	background-size cover
 	background-repeat no-repeat
-
 
 .positionAbsolute
 	position absolute
