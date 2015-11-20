@@ -50,54 +50,7 @@ function dibujarIntentos () {
 
 }
 
-function crearMensaje(mensaje,tiempoEspera){
 
-
-	if (mensaje == "fallo" && contenedorGlobos.hasChildNodes()){
-		while ( contenedorGlobos.childNodes.length >= 1 ){
-			contenedorGlobos.removeChild( contenedorGlobos.firstChild );
-		}
-	}
-
-	//se crea un tag contenedor para mostrar el mensaje de ganaste
-	contenedorMensajeGanaste = document.createElement("article")
-
-	//se agregan clases y atributos al tag del mensaje de ganaste
-	contenedorMensajeGanaste.classList.add("mensaje")
-	contenedorMensajeGanaste.id = "mensajeGanaste"
-
-	//se crea el tag de texto para mostrar el mensaje
-	mensajeGanaste = document.createElement("h2")
-
-	//se agregan clases y atributos al tag de texto del mensaje de ganaste
-	contenedorMensajeGanaste.classList.add("textoCentrado")
-
-	//se añade el texto de ganaste
-	mensajeGanaste.innerHTML = mensaje
-
-	//se agrega el tag de texto al tag contenedor del mensaje de ganaste
-	contenedorMensajeGanaste.appendChild(mensajeGanaste)
-
-	//se agregar el boton de reintentar
-	var botonReintentar = document.createElement("button")
-
-	//agregar clases y atributos
-	botonReintentar.id = "botonReintentar"
-	botonReintentar.innerHTML = "Reintentar"
-	botonReintentar.addEventListener("click", reintentar)
-
-	//se agrega el tag contenedor al contenedor de globos
-	contenedorMensajeGanaste.appendChild(botonReintentar)
-
-
-	setTimeout(function() {
-		document.body.appendChild(contenedorMensajeGanaste)
-		contenedorGlobos.classList.toggle("bloqueado")
-	}, tiempoEspera);
-
-	//remover evento del contenrdor de globos
-	contenedorGlobos.removeEventListener("click", presionarFueraGlobo)
-}
 
 //funcion para agregar el evento de click fuera del globo
 function agregarEventosPresionFueraGlobo() {
@@ -161,8 +114,6 @@ function reintentar(){
 
 	var globos = []
 
-	document.body.removeChild(document.getElementById("mensajeGanaste"))
-
 	globosPinchados = 0
 
 	clickFueraGlogo = 0
@@ -188,12 +139,8 @@ function presionarFueraGlobo() {
 		contenedorIntentosRestantes.removeChild(contenedorIntentosRestantes.firstChild)
 	}
 	clickFueraGlogo += 1
-
 	dibujarIntentos()
 
-	if (clickFueraGlogo == cantidadIntentos) {
-		crearMensaje("fallo",0)
-	}
 
 }
 
@@ -219,12 +166,6 @@ function presionarGlobo(event){
 	//se actualiza el numero de globos pinchados en el HTML
 	contenedorGlobosPinchados.innerHTML = globosPinchados
 
-	//condicion para cuando se pinchen todos los globos
-	if (globosPinchados == cantidadGlobos) {
-
-		crearMensaje("gano",tiempoEsperaDesinflarGlobos)
-
-	}
 }
 
 //-----------------------------//
