@@ -7,19 +7,14 @@
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-	<link rel="stylesheet" href="/public/css/lib/reveal.css">
-	<link rel="stylesheet" href="/public/css/lib/theme/solarized.css" id="theme">
-	<link rel="stylesheet" href="/public/css/styles.css">
-	<link rel="stylesheet" href="/public/css/fonts.css">
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
-
-	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
 
-
+	<link rel="stylesheet" href="/public/css/lib/reveal.css">
+	<link rel="stylesheet" href="/public/css/styles.css">
+	<link rel="stylesheet" href="/public/css/lib/theme/solarized.css" id="theme">
 
 </head>
 <body>
@@ -47,21 +42,22 @@
 		<div class="slides" style="width:100%">
 
 			{% for prueba in pruebas %}
+
+			{% if forloop %}<section>{% endif %}
+
+			<section>
+				<p>{{prueba.detaPregunta}}</p>
+				<iframe src="{{prueba.urlArchivo}}" name="{{prueba.idPregrunta}}" type="text/html" ></iframe>
+			</section>
+
 			{% if forloop %}
 			<section>
-				{% endif %}
-				<section>
-					<p>{{prueba.detaPregunta}}</p>
-					<iframe src="{{prueba.urlArchivo}}" name="{{prueba.idPregrunta}}" type="text/html" ></iframe>
-				</section>
-				{% if forloop %}
-				<section>
-					<button class='btn btnConfirmar' data-toggle="modal" data-target="#myModal">Verificar</button>
-				</section>
-				{% if forloop %}
+				<button class='btn btnConfirmar' data-toggle="modal" data-target="#myModal">Verificar</button>
 			</section>
 			{% endif %}
-			{% endif %}
+
+			{% if forloop %}</section>{% endif %}
+
 			{% endfor %}
 
 		</div>

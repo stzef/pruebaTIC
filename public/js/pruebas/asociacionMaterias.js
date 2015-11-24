@@ -32,13 +32,12 @@ function callbackDrop(evento) {
 	elementdrag.addEventListener("dragstart", dragDefault)
 
 	var tag = document.createElement("span")
-	tag.innerText = alt
+	tag.innerHTML = alt
 	tag.setAttribute("element-parentNode", alt)
 	tag.classList.add("tag")
 
 	var dele = document.createElement("span")
-	dele.innerText = "x"
-	dele.classList.add("delete")
+	dele.classList.add("delete","icon-delete")
 	dele.addEventListener("click", deleteTag)
 	tag.appendChild(dele)
 	zonetags.appendChild(tag)
