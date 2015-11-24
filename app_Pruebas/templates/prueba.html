@@ -13,30 +13,20 @@
 	<link rel="stylesheet" href="/public/css/fonts.css">
 </head>
 <body>
+	<script src="/public/js/main.js"></script>
 	<div class="reveal">
 		<div class="slides" style="width:100%">
+
+
+			{% for url in pruebas %}
 			<section>
-				<p>Pincha los globos</p>
 				<p>
-					Pincha todo los globos!, tienes n oportunidades, cada pinchazo erroneo restara una oportunidad
+					Texto
 				</p>
-				<iframe src="/public/pruebas/globos.html" type="text/html" ></iframe>
+				<iframe src="{{url}}" name="0" type="text/html" ></iframe>
 			</section>
-			<section>
-				<p>Ayuda a escoger las herramientas para realizar la tarea</p>
-				<p>
-					Arrastra los iconos de las tecnologias que te pueden ayudar a resolver una tarea.
-				</p>
-				<iframe src="/public/pruebas/asociacionMaterias.html" type="text/html" ></iframe>
-			</section>
-			<!--
-			<section>
-				<p>Ayuda a escoger las herramientas para realizar la tarea</p>
-				<p>
-					Arrastra los iconos de las tecnologias que te pueden ayudar a resolver una tarea.
-				</p>
-				<object data="/public/pruebas/asociacionIngles.html" type="text/html" id="juego"></object>
-			</section>-->
+			{% endfor %}
+
 		</div>
 	</div>
 	<script src="/public/js/lib/reveal.js"></script>

@@ -18,8 +18,6 @@ function deleteTag() {
 	elemento.removeEventListener("dragstart", dragDefault)
 	elemento.addEventListener("dragstart", dragInit)
 	zonetags.removeChild(padre)
-
-
 }
 
 function callbackDrop(evento) {

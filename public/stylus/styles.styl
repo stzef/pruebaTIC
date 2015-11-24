@@ -10,11 +10,15 @@
 
 @import url(https://fonts.googleapis.com/css?family=Lato)
 
-html
+html.heightCienPorCien
 	height 100%
 body
 	margin 0
 	user-select none
+
+iframe
+	overflow hidden
+
 
 .totalbody
 	display flex
@@ -137,3 +141,22 @@ iframe
 	text-align center
 	font-weight bold
 	font-size 20px
+
+.MSG
+	animation 2s ascender linear forwards
+	position absolute
+	right 0
+	color black
+	font-weight bold
+	display flex
+	background-color white
+	height 100px
+	min-width 500px
+	box-shadow 4px 5px 10px 0px gray
+	.contenedorMensaje
+		width calc(100% - 110px)
+		padding 10px
+	.contenedorIcon
+		width 110px
+		img
+			width 100%
