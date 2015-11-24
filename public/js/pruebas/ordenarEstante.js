@@ -5,11 +5,9 @@ var dropzones = document.querySelectorAll("[data-dropzone]")
 
 function eventDrop(evento) {
 	var elemento = evento.dataTransfer.getData("text/html",0)
+	console.log(elemento);
 	var atributo = evento.dataTransfer.getData("text/plain",1)
 	var numeroItem = evento.dataTransfer.getData("text/plain",2)
-
-	console.log(atributo);
-	console.log(numeroItem);
 
 	var contenedor = document.createElement("article")
 	contenedor.innerHTML = elemento
@@ -41,12 +39,14 @@ function eventDeleteElement() {
 	console.log(itemReal);
 
 	itemReal.classList.remove("disabled")
+	itemReal.addEventListener("dragstart", eventDragStart)
+
 
 }
 
 function eventDragStart(evento) {
 	elementDrag = this
-	evento.dataTransfer.setData("text/html", this.innerHTML , 0)
+	evento.dataTransfer.setData("text/html", this.outerHTML , 0)
 	evento.dataTransfer.setData("text/plain", this.getAttribute("data-entrepanocorrecto") , 1)
 	evento.dataTransfer.setData("text/plain", this.id , 2)
 

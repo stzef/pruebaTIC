@@ -18,12 +18,10 @@
 		<div class="slides" style="width:100%">
 
 
-			{% for url in pruebas %}
+			{% for prueba in pruebas %}
 			<section>
-				<p>
-					Texto
-				</p>
-				<iframe src="{{url}}" name="0" type="text/html" ></iframe>
+				<p>{{prueba.descripcion}}</p>
+				<iframe src="{{prueba.url}}" name="{{prueba.id}}" type="text/html" ></iframe>
 			</section>
 			{% endfor %}
 
