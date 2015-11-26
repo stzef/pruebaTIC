@@ -1,0 +1,38 @@
+{
+  "name": "pruebasTic",
+  "version": "1.0.0",
+  "description": "Aplicacion para evaluar competencias en TICs",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stzef/pruebaTIC.git"
+  },
+  "keywords": [
+    "pruebas",
+    "TIC"
+  ],
+  "author": "Elkin Forero",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stzef/pruebaTIC/issues"
+  },
+  "homepage": "https://github.com/stzef/pruebaTIC",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-imagemin": "^2.4.0",
+    "gulp-jade": "^1.1.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-replace": "^0.5.4",
+    "gulp-strip-debug": "^1.1.0",
+    "gulp-stylus": "^2.1.0",
+    "gulp-uglify": "^1.5.1",
+    "gulp-watch": "^4.3.5",
+    "gulp-webserver": "^0.9.1",
+    "jade": "^1.11.0",
+    "nib": "^1.1.0",
+    "stylus": "^0.52.4"
+  }
+}

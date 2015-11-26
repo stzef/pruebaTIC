@@ -1,0 +1,1 @@
+function verificarPrueba(){var e=window.frames;console.log(e);for(var i,r=0;i=e[r];r++)console.log(i),i.finallyValues()}ejecicioEnEjecucion=!0;var btnVerificar=document.getElementById("btnVerificar_js");console.log(btnVerificar),btnVerificar.addEventListener("click",verificarPrueba);

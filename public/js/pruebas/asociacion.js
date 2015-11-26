@@ -23,11 +23,15 @@ function deleteTag() {
 }
 
 function callbackDrop(evento) {
+	evento.stopPropagation()
 
 	elementdrag.classList.add("disabled")
+	console.log(elementdrag)
 
-	var alt = evento.dataTransfer.getData("text/plain",1)
-	var data = evento.dataTransfer.getData("text/plain",0)
+	var alt = evento.dataTransfer.getData("text/plain",0)
+	console.log(alt)
+	var data = evento.dataTransfer.getData("text/html",1)
+	console.log(data)
 
 	elementdrag.removeEventListener("dragstart", dragInit)
 	elementdrag.addEventListener("dragstart", dragDefault)
@@ -52,22 +56,27 @@ function callbackonDragOver(evento){
 }
 
 function dragInit(evento) {
-	elementdrag = evento.target
 
-	alt = this.getAttribute("alt")
-	dataBoolean = this.getAttribute("data-c")
+	elementdrag = this
+	evento.dataTransfer.effectAllowed = 'move'
+	evento.dataTransfer.dropEffect = 'move'
 
-	evento.dataTransfer.setData("text/plain",alt,1)
-	evento.dataTransfer.setData("text/plain",dataBoolean,1)
+	var alt = this.getAttribute("alt")
+	console.log(alt);
+	var dataBoolean = this.getAttribute("data-c")
+	console.log(dataBoolean);
+
+	evento.dataTransfer.setData("text/plain",alt,0)
+	evento.dataTransfer.setData("text/html",dataBoolean,1)
 }
 
 for (var i = 0, draggable; draggable =  draggables[i]; i++) {
 	draggable.addEventListener("dragstart", dragInit)
 }
 
-//dropzone.addEventListener("dragstart", dragDefault,true)
-dropzone.addEventListener("drop", callbackDrop,true)
-dropzone.addEventListener("dragover", callbackonDragOver,true)
+dropzone.addEventListener("dragstart", dragDefault)
+dropzone.addEventListener("drop", callbackDrop)
+dropzone.addEventListener("dragover", callbackonDragOver)
 
 
 function finallyValues(){
