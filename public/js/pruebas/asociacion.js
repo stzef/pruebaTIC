@@ -38,6 +38,7 @@ function callbackDrop(evento) {
 
 	var tag = document.createElement("span")
 	tag.setAttribute("data-c", data)
+	tag.setAttribute("element-parentNode", alt)
 	tag.innerText = alt
 	tag.classList.add("tag")
 
@@ -84,15 +85,21 @@ function finallyValues(){
 	var respuestas = zonetags.children
 	var value = 0
 
-	for (var i = 0,respuesta; respuesta = respuestas[i]; i++) {
-		var data = respuesta.getAttribute("data-c")
-		if (eval(data)){
-			value += 1
-		}
-	}
+	if (respuestas.length == 0){
+		return undefined
+	}else{
 
-	var values = {
-		puntaje : value
+
+		for (var i = 0,respuesta; respuesta = respuestas[i]; i++) {
+			var data = respuesta.getAttribute("data-c")
+			if (eval(data)){
+				value += 1
+			}
+		}
+
+		var values = {
+			puntaje : value
+		}
 	}
 
 	return values

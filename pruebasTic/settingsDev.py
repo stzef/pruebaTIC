@@ -25,6 +25,7 @@ APPEND_SLASH = True
 
 TEMPLATE_DEBUG = True
 
+#ALLOWED_HOSTS = ['*']
 ALLOWED_HOSTS = []
 
 

@@ -8,9 +8,7 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
 
 	<link rel="stylesheet" href="/public/min/css/lib/reveal.css">
 	<link rel="stylesheet" href="/public/min/css/styles.css">
@@ -46,27 +44,26 @@
 
 			{% for prueba in pruebas %}
 
-			{% if forloop %}<section>{% endif %}
-
 			<section>
 				<p>{{prueba.detaPregunta}}</p>
 				<iframe src="{{prueba.urlArchivo}}" name="{{prueba.idPregrunta}}" type="text/html" ></iframe>
 			</section>
 
-			{% if forloop %}
-			<section>
-				<button class='btn btnConfirmar' id="btnVerificar_js" data-toggle="modal" data-target="#myModal">Verificar</button>
-			</section>
-			{% endif %}
-
-			{% if forloop %}</section>{% endif %}
 
 			{% endfor %}
 
 		</div>
 	</div>
-	<script src="/public/min/js/main.js"></script>
+	<button class='btn btnConfirmar' id="btnVerificar_js" >Verificar</button>
+
+
 	<script src="/public/min/js/lib/reveal.js"></script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+
+
+	<script src="/public/min/js/main.js"></script>
 
 
 	<script>
@@ -75,9 +72,9 @@
 			progress: true,
 			history: true,
 			center: true,
-
-				transition: 'convex', // none/fade/slide/convex/concave/zoom
-			});
+			transition: 'convex', // none/fade/slide/convex/concave/zoom
+		});
 	</script>
+
 </body>
 </html>

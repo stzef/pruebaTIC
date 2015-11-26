@@ -1,16 +1,37 @@
 ejecicioEnEjecucion = true
 
 var btnVerificar = document.getElementById("btnVerificar_js")
+btnVerificar.addEventListener("click", verificarPrueba,true)
 console.log(btnVerificar);
-btnVerificar.addEventListener("click", verificarPrueba)
 
-function verificarPrueba() {
-	var frames = window.frames
+function verificarPrueba(evento) {
+
+	console.log('hola');
+
+
+	var rs = new Array()
+	var continueFlow = true
+	var frames = document.getElementsByTagName("iframe")
 	console.log(frames);
+
 	for (var i = 0,frame; frame = frames[i]; i++) {
 		console.log(frame);
-		frame.finallyValues()
+		var r = frame.contentWindow.finallyValues()
+		if (r == undefined){
+			continueFlow = false
+		}else{
+			rs.push(r)
+
+		}
 	}
+	if (continueFlow) {
+		console.info('estadisticas');
+		$('#myModal').modal('show')
+		console.warn(rs)
+	}else{
+		console.warn("hay algo sin llenar")
+	}
+
 }
 
 /*
