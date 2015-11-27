@@ -51,7 +51,9 @@
 
 		<div class="slides" style="width:100%">
 
+
 			{% for prueba in pruebas %}
+			{% if forloop.last %}<section>{% endif %}
 
 			<section>
 				<p>Pregunta #{{prueba.pk}}</p>
@@ -59,12 +61,17 @@
 				<iframe src="{{prueba.urlArchivo}}" name="{{prueba.idPregrunta}}" type="text/html" ></iframe>
 			</section>
 
+			{% if forloop.last %}
+			<section>
+				<button class='btn btnConfirmar' id="btnVerificar_js" >Verificar</button>
+			</section>
+			{% endif %}
 
+			{% if forloop.last %}</section>{% endif %}
 			{% endfor %}
 
 		</div>
 	</div>
-	<button class='btn btnConfirmar' id="btnVerificar_js" >Verificar</button>
 
 
 	<script src="/public/min/js/lib/reveal.js"></script>
