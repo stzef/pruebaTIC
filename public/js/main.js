@@ -39,11 +39,16 @@ function verificarPrueba(evento) {
 		$('#myModal').modal('show')
 
 
-	}else{
-		console.log('falta por realizar un ejercicio');
-		return
-	}
 
+		$.ajax({
+			url: "/save",
+			type:"POST",
+			data: {saludo:"hola"},
+			success: function(result){
+				console.log(result);
+			}});
+
+	}
 }
 
 /*
