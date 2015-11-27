@@ -1,7 +1,5 @@
 var iframe = window.frames.frameElement
-console.log(iframe)
 var id = iframe.name
-console.log(id);
 function finallyValues(){
 
 	var respuestas = document.getElementsByName("pregunta")

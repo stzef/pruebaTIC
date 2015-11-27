@@ -3,9 +3,7 @@ draggables = document.querySelectorAll("[draggable]"),
 elementDrag = null,
 CSSClassDisabled = "disabled";
 var iframe = window.frames.frameElement
-console.log(iframe)
 var id = iframe.name
-console.log(id);
 function eventDrop(evento) {
 
 	var elementoString = evento.dataTransfer.getData("text/html");
@@ -13,7 +11,6 @@ function eventDrop(evento) {
 	var parentAux  = document.createElement("div");
 	parentAux.innerHTML = elementoString;
 	var elemento = parentAux.firstChild;
-	console.error(elemento);
 	elemento.removeAttribute("draggable");
 	elemento.setAttribute("data-numberItem",elemento.id);
 	elemento.removeAttribute("id");

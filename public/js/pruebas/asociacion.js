@@ -3,9 +3,7 @@ var draggables = document.querySelectorAll("[draggable]")
 var zonetags = document.getElementById("zonetags_js")
 var elementdrag = null
 var iframe = window.frames.frameElement
-console.log(iframe)
 var id = iframe.name
-console.log(id);
 
 
 
@@ -31,12 +29,9 @@ function callbackDrop(evento) {
 	evento.stopPropagation()
 
 	elementdrag.classList.add("disabled")
-	console.log(elementdrag)
 
 	var alt = evento.dataTransfer.getData("text/plain",0)
-	console.log(alt)
 	var data = evento.dataTransfer.getData("text/html",1)
-	console.log(data)
 
 	elementdrag.removeEventListener("dragstart", dragInit)
 	elementdrag.addEventListener("dragstart", dragDefault)
@@ -52,7 +47,6 @@ function callbackDrop(evento) {
 	dele.addEventListener("click", deleteTag)
 	tag.appendChild(dele)
 
-	console.log(tag);
 
 	zonetags.appendChild(tag)
 }
@@ -68,9 +62,7 @@ function dragInit(evento) {
 	evento.dataTransfer.dropEffect = 'move'
 
 	var alt = this.getAttribute("alt")
-	console.log(alt);
 	var dataBoolean = this.getAttribute("data-c")
-	console.log(dataBoolean);
 
 	evento.dataTransfer.setData("text/plain",alt,0)
 	evento.dataTransfer.setData("text/html",dataBoolean,1)

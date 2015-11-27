@@ -26,9 +26,7 @@ var heightContenedorGlobos = 300
 //tag que muestra la cantidad de globos pinchados
 var contenedorGlobosPinchados = document.getElementById("tagContenedorGlobosPinchados")
 var iframe = window.frames.frameElement
-console.log(iframe)
 var id = iframe.name
-console.log(id);
 //tag que muestra la cantidad de de click fuera de los globos
 
 //---------------------

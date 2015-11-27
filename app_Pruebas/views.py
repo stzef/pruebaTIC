@@ -21,18 +21,45 @@ def prueba(request,type):
 def save(req):
 	if req.is_ajax():
 		if req.method == 'POST':
-			print(req.body)
+			recomendaciones = []
+			recomendacion = "mensaje default"
+
 			data = json.loads(req.body)
-			print("-------------------------------------")
-			print(type(data))
-			#data = json.dumps(req.POST)
-			#print(json.loads(data))
+			for obj in data:
 
-			#for key, value in data.iteritems():
-				#print(key)
-				##query = preguntas.objects.filter(pk=k['idPregunta'])
+				idP = int(obj["idPregunta"])
+				query = preguntas.objects.get(pk=idP)
+				vG = int(query.valorGanador)
 
-			return HttpResponse("ok")
+				if obj['tipoPregunta'] == "seleccion":
+					puntaje = int(obj['puntaje'])
+
+					if puntaje == vG:
+						recomendacion = "puntaje perfecto"
+
+					elif puntaje > vG/2 and puntaje < vG:
+						recomendacion = "puntaje medio"
+
+					elif puntaje < vG/2:
+						recomendacion = "puntaje bajo"
+
+				else:
+					correcto = int(obj['correcto'])
+
+					if correcto == vG:
+						recomendacion = "puntaje perfecto"
+
+					elif correcto > vG/2 and correcto < vG:
+						recomendacion = "puntaje medio"
+
+					elif correcto < vG/2:
+						recomendacion = "puntaje bajo"
+
+				print(recomendacion)
+
+				recomendaciones.append(recomendacion)
+
+			return HttpResponse(str(recomendaciones))
 
 
 
