@@ -1,3 +1,7 @@
+var iframe = window.frames.frameElement
+console.log(iframe)
+var id = iframe.name
+console.log(id);
 function finallyValues(){
 
 	var respuestas = document.getElementsByName("pregunta")
@@ -14,6 +18,7 @@ function finallyValues(){
 			return //message(2,"No a seleccionado ninguna respuesta.")
 		}else{
 			var values = {
+				idPregunta : id,
 				tipoPregunta: "seleccion",
 				puntaje : value
 			}

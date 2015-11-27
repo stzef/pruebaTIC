@@ -38,12 +38,14 @@ function verificarPrueba(evento) {
 		}
 		$('#myModal').modal('show')
 
-
+		dataSend = JSON.stringify({datas:rs})
 
 		$.ajax({
 			url: "/save",
 			type:"POST",
-			data: {saludo:"hola"},
+			contentType: 'application/json; charset=utf-8',
+			dataType: 'text',
+			data: dataSend,
 			success: function(result){
 				console.log(result);
 			}});

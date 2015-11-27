@@ -25,7 +25,10 @@ var heightContenedorGlobos = 300
 
 //tag que muestra la cantidad de globos pinchados
 var contenedorGlobosPinchados = document.getElementById("tagContenedorGlobosPinchados")
-
+var iframe = window.frames.frameElement
+console.log(iframe)
+var id = iframe.name
+console.log(id);
 //tag que muestra la cantidad de de click fuera de los globos
 
 //---------------------
@@ -142,6 +145,7 @@ function presionarGlobo(event){
 function finallyValues(){
 	if (globosPinchados > 0 || clickFueraGlogo > 0 ){
 		var values = {
+			idPregunta : id,
 			tipoPregunta: "actividad",
 			correcto : globosPinchados,
 			incorrecto : clickFueraGlogo

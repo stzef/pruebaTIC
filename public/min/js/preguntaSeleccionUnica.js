@@ -1,1 +1,1 @@
-function finallyValues(){for(var e,t=document.getElementsByName("pregunta"),n=null,a=0;e=t[a];a++)if(e.checked){n=e.getAttribute("data-peso");break}if(null!=n){var u={tipoPregunta:"seleccion",puntaje:n};return u}}
+function finallyValues(){for(var e,a=document.getElementsByName("pregunta"),n=null,r=0;e=a[r];r++)if(e.checked){n=e.getAttribute("data-peso");break}if(null!=n){var t={idPregunta:id,tipoPregunta:"seleccion",puntaje:n};return t}}var iframe=window.frames.frameElement;console.log(iframe);var id=iframe.name;console.log(id);

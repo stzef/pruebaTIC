@@ -2,7 +2,10 @@ var dropzones = document.querySelectorAll("[data-dropzone]"),
 draggables = document.querySelectorAll("[draggable]"),
 elementDrag = null,
 CSSClassDisabled = "disabled";
-
+var iframe = window.frames.frameElement
+console.log(iframe)
+var id = iframe.name
+console.log(id);
 function eventDrop(evento) {
 
 	var elementoString = evento.dataTransfer.getData("text/html");
@@ -81,6 +84,7 @@ function finallyValues(){
 	if (valuesBoolean) {
 
 		var values = {
+			idPregunta : id,
 			tipoPregunta: "actividad",
 			correcto : correcto,
 			incorrecto : incorrecto

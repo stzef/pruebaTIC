@@ -6,6 +6,7 @@ from models import *
 import json
 
 
+
 # Create your views here.
 
 def prueba(request,type):
@@ -19,10 +20,20 @@ def prueba(request,type):
 @csrf_exempt
 def save(req):
 	if req.is_ajax():
-		print(req)
-		return HttpResponse("ok")
-	else:
-		return HttpResponse("no")
+		if req.method == 'POST':
+			print(req.body)
+			data = json.loads(req.body)
+			print("-------------------------------------")
+			print(type(data))
+			#data = json.dumps(req.POST)
+			#print(json.loads(data))
+
+			#for key, value in data.iteritems():
+				#print(key)
+				##query = preguntas.objects.filter(pk=k['idPregunta'])
+
+			return HttpResponse("ok")
+
 
 
 

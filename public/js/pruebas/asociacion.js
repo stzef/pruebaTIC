@@ -2,6 +2,11 @@ var dropzone = document.querySelector("[data-dropzone]")
 var draggables = document.querySelectorAll("[draggable]")
 var zonetags = document.getElementById("zonetags_js")
 var elementdrag = null
+var iframe = window.frames.frameElement
+console.log(iframe)
+var id = iframe.name
+console.log(id);
+
 
 
 function dragDefault(evento){
@@ -101,6 +106,7 @@ function finallyValues(){
 		}
 
 		var values = {
+			idPregunta : id,
 			tipoPregunta: "actividad",
 			correcto : correcto,
 			incorrecto : incorrecto

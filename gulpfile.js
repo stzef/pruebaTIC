@@ -8,6 +8,8 @@ var gulp = require('gulp')
 ,nib = require('nib')
 ,server = require('gulp-webserver')
 ,concat = require('gulp-concat')
+,gutil = require('gulp-util')
+
 
 gulp.task('webserver', function() {
 	return gulp.src('./')
@@ -61,7 +63,7 @@ gulp.task('js', function () {
 
 		gulp.src(file.path)
 		//.pipe(stripDebug())
-		.pipe(uglify())
+		.pipe(uglify().on('error', gutil.log))
 		.pipe(gulp.dest(destJS))
 
 		.pipe(notify("Javascript Minified"))
