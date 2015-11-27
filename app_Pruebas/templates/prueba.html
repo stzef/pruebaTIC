@@ -29,7 +29,7 @@
 					<h4 class="modal-title" id="myModalLabel">Resultados</h4>
 				</div>
 				<div class="modal-body">
-					...
+					<section class="result"></section>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class=" btn btn-danger" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">Salir</span></button>
@@ -45,6 +45,7 @@
 			{% for prueba in pruebas %}
 
 			<section>
+				<p>Pregunta #{{prueba.pk}}</p>
 				<p>{{prueba.detaPregunta}}</p>
 				<iframe src="{{prueba.urlArchivo}}" name="{{prueba.idPregrunta}}" type="text/html" ></iframe>
 			</section>

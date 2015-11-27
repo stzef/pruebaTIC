@@ -60,7 +60,7 @@ function crearGlobos(){
 	//ciclo para crear los globos
 	for (var insertarGlobo =  1; insertarGlobo <= cantidadGlobos; insertarGlobo++){
 
-		var SVGglobo = 'M' + numeroAleatorio(widthContenedorGlobos-50,50) + " " + numeroAleatorio(heightContenedorGlobos-50,50) + ' h-68.351c-1.258 0-2.278 1.020-2.278 2.278l2.278 36.454c0 1.26 1.020 2.278 2.278 2.278h63.795c1.26 0 2.278-1.019 2.278-2.278l2.278-36.454c0-1.258-1.019-2.278-2.278-2.278 h-25.062l-4.556-6.835c0-1.258-1.019-2.278-2.278-2.278h-27.34c-1.258 0-2.278 1.020-2.278 2.278v6.835h-6.835c-1.258 0-2.278 1.020-2.278 2.278v4.556c0 1.258 1.020 2.278 2.278 2.278h68.352c1.26 0 2.278-1.020 2.278-2.278v-4.556c0-1.258-1.019-2.278-2.278-2.278z"'
+		var SVGglobo = "M" + numeroAleatorio(widthContenedorGlobos-50,50) + " " + numeroAleatorio(heightContenedorGlobos-50,50) + " h-68.351c-1.258 0-2.278 1.020-2.278 2.278l2.278 36.454c0 1.26 1.020 2.278 2.278 2.278h63.795c1.26 0 2.278-1.019 2.278-2.278l2.278-36.454c0-1.258-1.019-2.278-2.278-2.278 h-25.062l-4.556-6.835c0-1.258-1.019-2.278-2.278-2.278h-27.34c-1.258 0-2.278 1.020-2.278 2.278v6.835h-6.835c-1.258 0-2.278 1.020-2.278 2.278v4.556c0 1.258 1.020 2.278 2.278 2.278h68.352c1.26 0 2.278-1.020 2.278-2.278v-4.556c0-1.258-1.019-2.278-2.278-2.278z"
 
 		//crear tag para el globo
 		tagGlobo = document.createElementNS("http://www.w3.org/2000/svg","path")
@@ -140,8 +140,12 @@ function presionarGlobo(event){
 }
 
 function finallyValues(){
-	var values = {
-		puntaje : globosPinchados
+	if (globosPinchados > 0 || clickFueraGlogo > 0 ){
+		var values = {
+			puntaje : globosPinchados
+		}
+	}else{
+		values = undefined
 	}
 	return values
 }

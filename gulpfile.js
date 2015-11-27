@@ -54,7 +54,7 @@ gulp.task('imagen', function(){
 
 	})
 
-gulp.task('js', function (cb) {
+gulp.task('js', function () {
 
 	gulp.watch(srcJS)
 	.on("change",function (file) {
@@ -65,12 +65,11 @@ gulp.task('js', function (cb) {
 		.pipe(gulp.dest(destJS))
 
 		.pipe(notify("Javascript Minified"))
-		console.log(file.path)
 		})
 	});
 
 
-gulp.task('stylus', function (cb) {
+gulp.task('stylus', function () {
 
 	gulp.watch(srcCSS)
 	.on("change",function () {

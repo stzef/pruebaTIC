@@ -2,21 +2,18 @@ ejecicioEnEjecucion = true
 
 var btnVerificar = document.getElementById("btnVerificar_js")
 btnVerificar.addEventListener("click", verificarPrueba,true)
-console.log(btnVerificar);
 
 function verificarPrueba(evento) {
 
-	console.log('hola');
 
 
 	var rs = new Array()
 	var continueFlow = true
 	var frames = document.getElementsByTagName("iframe")
-	console.log(frames);
 
 	for (var i = 0,frame; frame = frames[i]; i++) {
-		console.log(frame);
 		var r = frame.contentWindow.finallyValues()
+		console.log(r);
 		if (r == undefined){
 			continueFlow = false
 		}else{
@@ -25,11 +22,16 @@ function verificarPrueba(evento) {
 		}
 	}
 	if (continueFlow) {
-		console.info('estadisticas');
+		for (var i = 0; i < rs.length; i++ ) {
+
+			$(".result").append($("<p></p>").text("Pregunta #" + i + " -> Resultado : " + rs[i].puntaje + " puntos."))
+		}
 		$('#myModal').modal('show')
-		console.warn(rs)
+
+
 	}else{
-		console.warn("hay algo sin llenar")
+		console.log('falta por realizar un ejercicio');
+		return
 	}
 
 }
