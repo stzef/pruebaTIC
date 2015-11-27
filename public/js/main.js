@@ -2,6 +2,10 @@ ejecicioEnEjecucion = true
 recomendaciones = new Array()
 var rs = new Array()
 
+$("#btnRestart_js").on("click",function() {
+	location.reload()
+})
+
 var btnVerificar = document.getElementById("btnVerificar_js")
 btnVerificar.addEventListener("click", verificarPrueba,true)
 
