@@ -83,7 +83,8 @@ dropzone.addEventListener("dragover", callbackonDragOver)
 function finallyValues(){
 
 	var respuestas = zonetags.children
-	var value = 0
+	var correcto = 0
+	var incorrecto = 0
 
 	if (respuestas.length == 0){
 		return undefined
@@ -93,12 +94,16 @@ function finallyValues(){
 		for (var i = 0,respuesta; respuesta = respuestas[i]; i++) {
 			var data = respuesta.getAttribute("data-c")
 			if (eval(data)){
-				value += 1
+				correcto += 1
+			}else{
+				incorrecto += 1
 			}
 		}
 
 		var values = {
-			puntaje : value
+			tipoPregunta: "actividad",
+			correcto : correcto,
+			incorrecto : incorrecto
 		}
 	}
 

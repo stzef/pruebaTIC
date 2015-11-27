@@ -1,1 +1,1 @@
-function finallyValues(){for(var e,t=document.getElementsByName("pregunta"),a=null,n=0;e=t[n];n++)if(e.checked){a=e.getAttribute("data-peso");break}if(null!=a){var u={puntaje:a};return u}}
+function finallyValues(){for(var e,t=document.getElementsByName("pregunta"),n=null,a=0;e=t[a];a++)if(e.checked){n=e.getAttribute("data-peso");break}if(null!=n){var u={tipoPregunta:"seleccion",puntaje:n};return u}}

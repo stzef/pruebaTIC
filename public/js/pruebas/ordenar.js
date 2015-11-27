@@ -57,19 +57,23 @@ for (var i = 0, draggable; draggable =  draggables[i]; i++) {
 }
 function finallyValues(){
 
-	var value = 0;
+	var correcto = 0;
+	var incorrecto = 0;
 
 	for (var i = 0,dropzone; dropzone = dropzones[i]; i++) {
 
 		var respuestas = dropzone.children;
 
-		if (respuestas.length != 0){
+		if (respuestas.length !== 0){
 
-			var valuesBoolean = true
+			var valuesBoolean = true;
 
 			for (var j = 0,respuesta; respuesta =  respuestas[j]; j++) {
 				if (dropzone.getAttribute("data-entrepano") == respuesta.getAttribute("data-entrepanocorrecto")){
-					value += 1;
+					correcto += 1;
+				}else{
+					incorrecto += 1;
+
 				}
 			}
 		}
@@ -77,7 +81,9 @@ function finallyValues(){
 	if (valuesBoolean) {
 
 		var values = {
-			puntaje : value
+			tipoPregunta: "actividad",
+			correcto : correcto,
+			incorrecto : incorrecto
 		}
 	}else{
 		values = undefined;

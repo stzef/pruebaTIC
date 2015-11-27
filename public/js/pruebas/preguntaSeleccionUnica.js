@@ -7,12 +7,14 @@ function finallyValues(){
 		if (respuesta.checked){
 			value = respuesta.getAttribute("data-peso")
 			break
-		}	}
+		}
+	}
 
-		if (value == null){
+	if (value == null){
 			return //message(2,"No a seleccionado ninguna respuesta.")
 		}else{
 			var values = {
+				tipoPregunta: "seleccion",
 				puntaje : value
 			}
 		}

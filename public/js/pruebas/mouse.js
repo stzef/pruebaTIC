@@ -142,7 +142,9 @@ function presionarGlobo(event){
 function finallyValues(){
 	if (globosPinchados > 0 || clickFueraGlogo > 0 ){
 		var values = {
-			puntaje : globosPinchados
+			tipoPregunta: "actividad",
+			correcto : globosPinchados,
+			incorrecto : clickFueraGlogo
 		}
 	}else{
 		values = undefined

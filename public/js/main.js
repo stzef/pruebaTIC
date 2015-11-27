@@ -13,7 +13,6 @@ function verificarPrueba(evento) {
 
 	for (var i = 0,frame; frame = frames[i]; i++) {
 		var r = frame.contentWindow.finallyValues()
-		console.log(r);
 		if (r == undefined){
 			continueFlow = false
 		}else{
@@ -23,8 +22,19 @@ function verificarPrueba(evento) {
 	}
 	if (continueFlow) {
 		for (var i = 0; i < rs.length; i++ ) {
+			console.log(rs)
 
-			$(".result").append($("<p></p>").text("Pregunta #" + i + " -> Resultado : " + rs[i].puntaje + " puntos."))
+			var tr = $("<tr></tr>")
+			tr.append($("<th></th>").text(i))
+
+			if (rs[i].tipoPregunta == "actividad"){
+				tr.append($("<th></th>").text(rs[i].correcto))
+				tr.append($("<th></th>").text(rs[i].incorrecto))
+			}else{
+				tr.append($("<th></th>").attr("colspan","2").text(rs[i].puntaje))
+			}
+
+			$(".tableResult").append(tr)
 		}
 		$('#myModal').modal('show')
 
