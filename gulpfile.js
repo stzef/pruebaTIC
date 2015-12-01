@@ -10,26 +10,6 @@ var gulp = require('gulp')
 ,concat = require('gulp-concat')
 ,gutil = require('gulp-util')
 
-
-gulp.task('webserver', function() {
-	return gulp.src('./')
-	.pipe(server({
-		port : 8080,
-		host : 'localhost',
-		directoryListing: true,
-		//fallback: 'dist/index.html',
-		livereload: {
-			enable: true,
-			port: 2346,
-			filter: function (filename) {
-				if (filename.match(/node_modules/)) { return false; }
-				else { return true; }
-			}
-			},
-			open:true,
-			}));
-	});
-
 var srcIMG = 'public/img/**/*'
 ,destIMG = 'public/min/img'
 

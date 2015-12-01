@@ -20,12 +20,12 @@ NOMBRE_PROYECTO = "pruebasTic"
 SECRET_KEY = 'cyaakq$5s=lkjyyrdw2fzts#9prov3c432*c0(lo^@u-kkc#ad'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 APPEND_SLASH = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition

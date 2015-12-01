@@ -1,7 +1,7 @@
 .reveal .slides
 	position absolute
-	width 90% !important
-	height 90% !important
+	width 100% !important
+	height 100% !important
 	top 0
 	right 0
 	bottom 0
@@ -16,6 +16,8 @@
 	perspective-origin 50% 40%
 .reveal
 	height 90% !important
+.reveal .slides>section, .reveal .slides>section>section
+	padding 0
 
 @import "fonts.styl"
 @import "OOCSS.styl"
@@ -93,6 +95,7 @@ nav
 	display flex
 	justify-content space-between
 	border-bottom 3px solid gray
+	margin-bottom 10px
 	ul
 		display flex
 		justify-content space-around
@@ -109,6 +112,7 @@ button
 		color white
 
 footer
+	margin-top 10px
 	align-self flex-end
 	width 100%
 	background-color white
