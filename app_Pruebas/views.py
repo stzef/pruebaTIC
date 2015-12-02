@@ -3,27 +3,22 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from models import *
+from django.db.models import Q
 import json
-
-
-
-# Create your views here.
 
 def prueba(request,type):
 	if(type == "apropiacion"):
 		context = {"pruebas":preguntas.objects.filter(competencia__nCompetencia="apropiacion")}
 	else:
 		context = {"pruebas":preguntas.objects.filter(competencia__nCompetencia="solucion")}
-	print(pruebas)
 	return render(request, 'prueba.html', context)
 
 @csrf_exempt
 def save(req):
 	if req.is_ajax():
 		if req.method == 'POST':
-			recomendaciones = []
+			recomendacionesPrueba = []
 			texto = []
-			recomendacion = "mensaje default"
 
 			data = json.loads(req.body)
 			for obj in data:
@@ -34,42 +29,30 @@ def save(req):
 
 				if obj['tipoPregunta'] == "seleccion":
 					puntaje = int(obj['puntaje'])
-
-					if puntaje == vG:
-						recomendacion = "puntaje perfecto"
-
-					elif puntaje > vG/2 and puntaje < vG:
-						recomendacion = "puntaje medio"
-
-					elif puntaje < vG/2:
-						recomendacion = "puntaje bajo"
-
 				else:
-					correcto = int(obj['correcto'])
+					puntaje = int(obj['correcto'])
 
-					if correcto == vG:
-						recomendacion = "puntaje perfecto"
+				if puntaje == vG:
+					mahtQuery = "a"
+				elif puntaje >= vG/2 and puntaje < vG:
+					mahtQuery = "m"
+				elif puntaje <= vG/2:
+					mahtQuery = "b"
 
-					elif correcto > vG/2 and correcto < vG:
-						recomendacion = "puntaje medio"
+				#print("idP -- " + str(idP))
+				recomendacion = recomendaciones.objects.filter(Q(valorNecesario=mahtQuery) & Q(preguntas__idPregrunta=1)).values()
+				print(recomendaciones.objects.all().values())
+				#print(recomendacion)
+				#print(recomendacion[0]['preguntas_id'])
 
-					elif correcto < vG/2:
-						recomendacion = "puntaje bajo"
-
-				print(recomendacion)
-
-				recomendaciones.append(recomendacion)
-				print(query.detaPregunta)
+				recomendacionesPrueba.append(recomendacion[0]['detaRecomendacion'])
 				texto.append(query.detaPregunta)
 
 			dataResponse = {
-				"r":recomendaciones,
+				"r":recomendacionesPrueba,
 				"t":texto
 			}
-			print(type(dataResponse))
 			dataR = json.dumps(dataResponse)
-			print(dataR)
-			print(type(dataR))
 
 			return HttpResponse(dataR, content_type='application/json')
 

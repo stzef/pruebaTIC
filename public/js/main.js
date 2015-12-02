@@ -4,7 +4,7 @@ var rs = new Array()
 var glo = null
 
 $("#btnRestart_js").on("click",function() {
-//	location.reload()
+	location.reload()
 })
 
 var btnVerificar = document.getElementById("btnVerificar_js")
