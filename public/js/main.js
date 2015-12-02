@@ -1,9 +1,10 @@
 ejecicioEnEjecucion = true
 recomendaciones = new Array()
 var rs = new Array()
+var glo = null
 
 $("#btnRestart_js").on("click",function() {
-	location.reload()
+//	location.reload()
 })
 
 var btnVerificar = document.getElementById("btnVerificar_js")
@@ -34,25 +35,27 @@ function verificarPrueba(evento) {
 			dataType: 'text',
 			data: dataSend,
 			success: function(result){
-				recomendaciones = eval(result)
-				console.log(1)
+				console.log(result)
+				console.log("-------------")
+				dataResponseTemp = eval("[" + result + "]")
+				dataResponse = dataResponseTemp[0]
 			}});
 
 		for (var i = 0; i < rs.length; i++ ) {
 
 			var tr = $("<tr></tr>")
-			tr.append($("<th></th>").text(i))
+			tr.append($("<th></th>").text(dataResponse.t[i]))
 
 			console.log(2)
 			if (rs[i].tipoPregunta == "actividad"){
 				tr.append($("<th></th>").text(rs[i].correcto))
 				tr.append($("<th></th>").text(rs[i].incorrecto))
-				tr.append($("<th></th>").text(recomendaciones[i]))
+				tr.append($("<th></th>").text(dataResponse.r[i]))
 
 
 			}else{
 				tr.append($("<th></th>").attr("colspan","2").text(rs[i].puntaje))
-				tr.append($("<th></th>").text(recomendaciones[i]))
+				tr.append($("<th></th>").text(dataResponse.r[i]))
 			}
 
 			$(".tableResult").append(tr)
@@ -61,6 +64,9 @@ function verificarPrueba(evento) {
 
 
 
+	}else{
+		var msg = new message()
+		msg.show(2,"Falta(n) alguna(s) pregunta(s) por responder.")
 	}
 }
 
@@ -74,3 +80,48 @@ function confirmarCierreVentana(){
 	}
 }
 */
+
+
+
+function message(){
+
+	this.show = function (tipo,msg) {
+		var contenedorMSG = document.createElement("article")
+		contenedorMSG.classList.add("contenedorMensaje")
+		var mensaje = document.createElement("p")
+		var contenedorIcon = document.createElement("article")
+		var contenedorMensaje = document.createElement("article")
+		mensaje.innerHTML= msg
+		var icono = document.createElement("span")
+		contenedorMSG.classList.add("MSG")
+
+		if (tipo == 0){
+			var icon = document.createElement("img")
+			icon.src = "/public/img/icons/correcto.png"
+		}else if(tipo == 1){
+			var icon = document.createElement("img")
+			icon.src = "/public/img/icons/incorrecto.png"
+		}
+		else if(tipo == 2){
+			var icon = document.createElement("img")
+			icon.src = "/public/img/icons/informacion.png"
+		}
+
+		icon.classList.add("contenedorIcon")
+		mensaje.classList.add("contenedorMensaje")
+
+		var top = window.window.scrollY
+		contenedorMSG.appendChild(icon)
+		contenedorMSG.appendChild(mensaje)
+
+		contenedorMSG.setAttribute("style", "top:" + top + "px")
+
+
+		document.body.appendChild(contenedorMSG)
+
+		setTimeout(function(){
+			document.body.removeChild(document.body.lastChild)
+		}, 2000)
+	}
+
+}

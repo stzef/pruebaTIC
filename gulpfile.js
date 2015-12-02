@@ -29,7 +29,6 @@ gulp.task('imagen', function(){
 	.pipe(imagemin({
 		progressive: true,
 		svgoPlugins: [{removeViewBox: false}]
-
 		}))
 
 	.pipe(gulp.dest(destIMG))

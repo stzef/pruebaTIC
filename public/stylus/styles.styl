@@ -19,6 +19,9 @@
 .reveal .slides>section, .reveal .slides>section>section
 	padding 0
 
+.modal-dialog
+	width: 90% !important
+
 @import "fonts.styl"
 @import "OOCSS.styl"
 @import "page.styl"
@@ -53,10 +56,14 @@ iframe
 
 .backToEjercice
 	font-size 20px
-	text-align center
-	display block
 	background-color rgba(0,0,0,.1)
 	text-decoration none
+	float: right
+	margin-right: 29px
+	font-size 30px
+	p
+		display inline-block
+		margin 0
 
 .totalbody
 	display flex

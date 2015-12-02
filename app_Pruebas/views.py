@@ -22,6 +22,7 @@ def save(req):
 	if req.is_ajax():
 		if req.method == 'POST':
 			recomendaciones = []
+			texto = []
 			recomendacion = "mensaje default"
 
 			data = json.loads(req.body)
@@ -58,8 +59,19 @@ def save(req):
 				print(recomendacion)
 
 				recomendaciones.append(recomendacion)
+				print(query.detaPregunta)
+				texto.append(query.detaPregunta)
 
-			return HttpResponse(str(recomendaciones))
+			dataResponse = {
+				"r":recomendaciones,
+				"t":texto
+			}
+			print(type(dataResponse))
+			dataR = json.dumps(dataResponse)
+			print(dataR)
+			print(type(dataR))
+
+			return HttpResponse(dataR, content_type='application/json')
 
 
 

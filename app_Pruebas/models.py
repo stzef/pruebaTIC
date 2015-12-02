@@ -49,7 +49,7 @@ class preguntas(models.Model):
 	competencia = models.ForeignKey(competencias)
 
 	def __str__(self):
-		return u'%s' % ("pregunta #" + str(self.idPregrunta) + " - Competencia " + str(self.competencia))
+		return u'%s' % ("pregunta #" + str(self.idPregrunta) + " - Competencia " + str(self.competencia) + " <--> " + self.detaPregunta)
 
 class respuestas(models.Model):
 	idRespuestas = models.IntegerField(primary_key=True)
@@ -61,6 +61,7 @@ class recomendaciones(models.Model):
 	idRecomendacion = models.IntegerField(primary_key=True)
 	detaRecomendacion = models.CharField(max_length=200)
 	preguntas = models.ForeignKey(preguntas)
+	valorNecesario = models.IntegerField(default=0)
 
 
 class pruebasDeta(models.Model):
