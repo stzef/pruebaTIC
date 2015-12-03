@@ -19,6 +19,7 @@ def save(req):
 		if req.method == 'POST':
 			recomendacionesPrueba = []
 			texto = []
+			clases = []
 
 			data = json.loads(req.body)
 			for obj in data:
@@ -34,23 +35,24 @@ def save(req):
 
 				if puntaje == vG:
 					mahtQuery = "a"
+					classCss = 'PuntajeAlto'
 				elif puntaje >= vG/2 and puntaje < vG:
 					mahtQuery = "m"
+					classCss = 'PuntajeMedio'
 				elif puntaje <= vG/2:
 					mahtQuery = "b"
+					classCss = 'PuntajeBajo'
 
-				#print("idP -- " + str(idP))
-				recomendacion = recomendaciones.objects.filter(Q(valorNecesario=mahtQuery) & Q(preguntas__idPregrunta=1)).values()
-				print(recomendaciones.objects.all().values())
-				#print(recomendacion)
-				#print(recomendacion[0]['preguntas_id'])
+				recomendacion = recomendaciones.objects.get(Q(valorNecesario=mahtQuery) & Q(preguntas__idPregrunta=idP))
 
-				recomendacionesPrueba.append(recomendacion[0]['detaRecomendacion'])
+				recomendacionesPrueba.append(recomendacion.detaRecomendacion)
 				texto.append(query.detaPregunta)
+				clases.append(classCss)
 
 			dataResponse = {
 				"r":recomendacionesPrueba,
-				"t":texto
+				"t":texto,
+				"clases" : clases,
 			}
 			dataR = json.dumps(dataResponse)
 

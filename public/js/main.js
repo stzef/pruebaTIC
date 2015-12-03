@@ -41,21 +41,23 @@ function verificarPrueba(evento) {
 				dataResponse = dataResponseTemp[0]
 			}});
 
+		console.warn(dataResponse.classCss)
 		for (var i = 0; i < rs.length; i++ ) {
 
 			var tr = $("<tr></tr>")
-			tr.append($("<th></th>").text(dataResponse.t[i]))
+			tr.addClass(dataResponse.clases[i])
+			tr.append($("<td></td>").text(dataResponse.t[i]))
 
 			console.log(2)
 			if (rs[i].tipoPregunta == "actividad"){
-				tr.append($("<th></th>").text(rs[i].correcto))
-				tr.append($("<th></th>").text(rs[i].incorrecto))
-				tr.append($("<th></th>").text(dataResponse.r[i]))
+				tr.append($("<td></td>").text(rs[i].correcto))
+				tr.append($("<td></td>").text(rs[i].incorrecto))
+				tr.append($("<td></td>").text(dataResponse.r[i]))
 
 
 			}else{
-				tr.append($("<th></th>").attr("colspan","2").text(rs[i].puntaje))
-				tr.append($("<th></th>").text(dataResponse.r[i]))
+				tr.append($("<td></td>").attr("colspan","2").text(rs[i].puntaje))
+				tr.append($("<td></td>").text(dataResponse.r[i]))
 			}
 
 			$(".tableResult").append(tr)

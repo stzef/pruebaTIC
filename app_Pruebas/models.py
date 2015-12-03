@@ -62,7 +62,8 @@ class recomendaciones(models.Model):
 	detaRecomendacion = models.CharField(max_length=200)
 	preguntas = models.ForeignKey(preguntas)
 	valorNecesario = models.CharField(max_length=20)
-
+	def __str__(self):
+		return u'%s' % ("Recomendacion --> " + str(self.preguntas))
 
 class pruebasDeta(models.Model):
 	itpruebasdeta = models.IntegerField(primary_key=True)
