@@ -3,10 +3,10 @@ recomendaciones = new Array()
 var rs = new Array()
 var glo = null
 
-$("#btnRestart_js").on("click",function() {
+
+$('#myModal').on('hidden.bs.modal', function (e) {
 	location.reload()
 })
-
 var btnVerificar = document.getElementById("btnVerificar_js")
 btnVerificar.addEventListener("click", verificarPrueba,true)
 
