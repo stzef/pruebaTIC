@@ -18,14 +18,48 @@
 		margin 10px
 		img
 			width 100%
+widthTiangle = 20px
+colorTag  = #0089E0
+.dragInit
+	border 3px dashed gray
+	box-sizing border-box
+	border-radius 5px
+.inZoneDrop
+	opacity 0.5
+#zonetags_js
+	display block
+	margin 10px 0
+
 .tag
-	border: 1px solid rgba(0,0,0,0.5)
 	margin: 5px
 	padding: 5px
-	background-color: rgba(0,0,0,0.3)
+	background-color: colorTag
 	color: white
 	font-weight: bold
 	border-top-right-radius 10px
+	border-bottom-right-radius 10px
+	position relative
+	margin-left: 20px;
+	&:after
+		content: '';
+		display: inline-block;
+		width: 5px;
+		height: 5px;
+		background-color: #fff;
+		position: absolute;
+		left: -13px;
+		top: 11px;
+		border-radius: 50%;
+	&:before
+		content ''
+		display inline-block
+		border-top: 14px solid transparent;
+		border-bottom: 13px solid transparent;
+		border-right: widthTiangle solid colorTag;
+		position: absolute;
+		left: - widthTiangle;
+		top: 0
+
 .delete
 	margin-left 10px
 	cursor pointer

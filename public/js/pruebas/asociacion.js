@@ -30,6 +30,9 @@ function callbackDrop(evento) {
 
 	elementdrag.classList.add("disabled")
 
+	dropzone.classList.remove("dragInit")
+	dropzone.classList.remove("inZoneDrop")
+
 	var alt = evento.dataTransfer.getData("text/plain",0)
 	var data = evento.dataTransfer.getData("text/html",1)
 
@@ -54,12 +57,22 @@ function callbackDrop(evento) {
 function callbackonDragOver(evento){
 	evento.preventDefault()
 }
+function dragenter(evento){
+	evento.preventDefault()
+	dropzone.classList.add("inZoneDrop")
+}
+function dragleave(evento){
+	evento.preventDefault()
+	dropzone.classList.remove("inZoneDrop")
+}
 
 function dragInit(evento) {
+	dropzone.classList.add("dragInit")
 
 	elementdrag = this
 	evento.dataTransfer.effectAllowed = 'move'
 	evento.dataTransfer.dropEffect = 'move'
+
 
 	var alt = this.getAttribute("alt")
 	var dataBoolean = this.getAttribute("data-c")
@@ -74,6 +87,8 @@ for (var i = 0, draggable; draggable =  draggables[i]; i++) {
 
 dropzone.addEventListener("dragstart", dragDefault)
 dropzone.addEventListener("drop", callbackDrop)
+dropzone.addEventListener("dragenter", dragenter)
+dropzone.addEventListener("dragleave", dragleave)
 dropzone.addEventListener("dragover", callbackonDragOver)
 
 

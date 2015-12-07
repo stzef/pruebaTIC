@@ -4,9 +4,25 @@ elementDrag = null,
 CSSClassDisabled = "disabled";
 var iframe = window.frames.frameElement
 var id = iframe.name
+
+function dragenter(evento){
+	evento.preventDefault()
+	this.classList.add("inZoneDrop")
+}
+function dragleave(evento){
+	evento.preventDefault()
+	this.classList.remove("inZoneDrop")
+}
+
 function eventDrop(evento) {
 
 	var elementoString = evento.dataTransfer.getData("text/html");
+
+
+	for (var i = 0, dropzone; dropzone =  dropzones[i]; i++) {
+		dropzone.classList.remove("dragInit")
+		dropzone.classList.remove("inZoneDrop")
+	}
 
 	var parentAux  = document.createElement("div");
 	parentAux.innerHTML = elementoString;
@@ -42,6 +58,10 @@ function eventDragStart(evento) {
 
 	elementDrag = this;
 
+	for (var i = 0, dropzone; dropzone =  dropzones[i]; i++) {
+		dropzone.classList.add("dragInit")
+	}
+
 	var elementParent = this.outerHTML;
 
 	evento.dataTransfer.setData("text/html",elementParent );
@@ -50,6 +70,8 @@ function eventDragStart(evento) {
 for (var i = 0, dropzone; dropzone =  dropzones[i]; i++) {
 	dropzone.addEventListener("drop", eventDrop);
 	dropzone.addEventListener("dragover", eventDragOver);
+	dropzone.addEventListener("dragenter", dragenter)
+	dropzone.addEventListener("dragleave", dragleave)
 }
 
 for (var i = 0, draggable; draggable =  draggables[i]; i++) {
