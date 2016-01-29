@@ -11,6 +11,11 @@ var btnVerificar = document.getElementById("btnVerificar_js")
 btnVerificar.addEventListener("click", verificarPrueba,true)
 
 function verificarPrueba(evento) {
+	var pruebas = document.querySelectorAll("iframe"),
+	idsPruebas = []
+	for (var p = 0,prueba; prueba = pruebas[p]; p++) {
+		idsPruebas.push(prueba.name)
+	};
 
 	rs = []
 	var continueFlow = true
@@ -22,18 +27,17 @@ function verificarPrueba(evento) {
 			continueFlow = false
 		}else{
 			rs.push(r)
-
 		}
 	}
 	if (continueFlow) {
-		dataSend = JSON.stringify(rs)
+		responseUser = JSON.stringify(rs)
 		$.ajax({
 			url: "/save",
 			type:"POST",
 			async: false,
 			contentType: 'application/json; charset=utf-8',
 			dataType: 'text',
-			data: dataSend,
+			data: JSON.stringify({"responseUser":responseUser,"idsPruebas":idsPruebas}),
 			success: function(result){
 				console.log(result)
 				console.log("-------------")

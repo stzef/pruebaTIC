@@ -1,17 +1,38 @@
 # -*- encoding: utf-8 -*-
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
 from models import *
 from django.db.models import Q
+from django.core import serializers
 import json
+import datetime
+
 
 def prueba(request,type):
-	if(type == "apropiacion"):
-		context = {"pruebas":preguntas.objects.filter(competencia__nCompetencia="apropiacion")}
+	if request.user.is_authenticated():
+		if(type == "apropiacion"):
+			context = {"pruebas":preguntas.objects.filter(competencia__nCompetencia="apropiacion")}
+		else:
+			context = {"pruebas":preguntas.objects.filter(competencia__nCompetencia="solucion")}
+		return render(request, 'prueba.html', context)
 	else:
-		context = {"pruebas":preguntas.objects.filter(competencia__nCompetencia="solucion")}
-	return render(request, 'prueba.html', context)
+		return redirect("/login")
+
+def register(request):
+	return render(request, 'registation.html')
+
+@csrf_exempt
+def registerNewUser(request):
+	data = request.POST
+	print(data["nombre"])
+	user = User.objects.create_user(data["usuario"], data["email"], data["password"])
+	user.first_name = data["nombre"]
+	user.last_name = data["apellido"]
+	user.save()
+	return redirect("/login")
+
 
 @csrf_exempt
 def save(req):
@@ -20,13 +41,35 @@ def save(req):
 			recomendacionesPrueba = []
 			texto = []
 			clases = []
-
 			data = json.loads(req.body)
-			for obj in data:
+
+			responseUser = json.loads(data["responseUser"])
+			idsPruebas = data["idsPruebas"]
+
+			for obj in responseUser:
 
 				idP = int(obj["idPregunta"])
 				query = preguntas.objects.get(pk=idP)
 				vG = int(query.valorGanador)
+
+				objPruebas = pruebas(
+					idPrueba = idP,
+					fhPrueba = datetime.datetime.now(),
+					tiUsuario = tiUsuario(
+						idTiUsuario = 1,
+						nTiUsuario = ""
+					),
+					edades = edades(
+						idEdad = 1,
+						edadInicial = 1,
+						edadFinal =1
+					),
+					email = ""
+				)
+
+				objPruebas.save()
+
+
 
 				if obj['tipoPregunta'] == "seleccion":
 					puntaje = int(obj['puntaje'])

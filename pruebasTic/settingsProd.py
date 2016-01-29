@@ -27,6 +27,9 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_URL = "/"
+LOGIN_URL = "/"
 
 # Application definition
 
@@ -39,7 +42,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'app_Informacion',
     'app_Pruebas',
-)
+    )
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -49,7 +52,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-)
+    )
 
 ROOT_URLCONF = 'pruebasTic.urls'
 
@@ -60,14 +63,14 @@ WSGI_APPLICATION = 'pruebasTic.wsgi.application'
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'das324e9qn7faa',
-        'USER': 'bqqcxdpqroqtnn',
-        'PASSWORD': 'MgzBbrWsSloyASO5BKZ-KaIDvO',
-        'HOST': 'ec2-54-83-201-196.compute-1.amazonaws.com',
-        'PORT': '5432',
-    }
+'default': {
+'ENGINE': 'django.db.backends.postgresql_psycopg2',
+'NAME': 'das324e9qn7faa',
+'USER': 'bqqcxdpqroqtnn',
+'PASSWORD': 'MgzBbrWsSloyASO5BKZ-KaIDvO',
+'HOST': 'ec2-54-83-201-196.compute-1.amazonaws.com',
+'PORT': '5432',
+}
 }
 
 # Internationalization

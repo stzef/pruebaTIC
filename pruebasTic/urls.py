@@ -9,6 +9,8 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url('', include('app_Informacion.urls')),
     url('', include('app_Pruebas.urls')),
+    (r'^logout/$', 'django.contrib.auth.views.logout',{'next_page': '/'}),
+    url('^', include('django.contrib.auth.urls')),
 	url(r'^public/(?P<path>.*)$','django.views.static.serve',
 	{'document_root':settings.MEDIA_ROOT,}),
 )

@@ -18,8 +18,13 @@
 		</ul>
 
 		<ul>
-			<li><a href="#" class="btn btnConfirmar">Registrarme</a></li>
-			<li><a href="#" class="btn btnEnviar">Ingresar</a></li>
+			{% if user.is_authenticated %}
+			<li>Hola <strong>{{ user.pk }}</strong></li>
+			<li><a href="{% url 'logout' %}" class="btn btnCancelar">Salir</a></li>
+			{% else %}
+			<li><a href="{% url 'register' %}" class="btn btnConfirmar">Registrarme</a></li>
+			<li><a href="{% url 'login' %}" class="btn btnEnviar">Ingresar</a></li>
+			{% endif %}
 		</ul>
 
 	</nav>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Registro</title>
+</head>
+<body>
+	<form action="" id="registration">
+		<section>
+			<label for="">usuario</label>
+			<input name="usuario" type="text">
+		</section>
+		<section>
+			<label for="">nombre</label>
+			<input name="nombre" type="text">
+		</section>
+		<section>
+			<label for="">apellido</label>
+			<input name="apellido" type="text">
+		</section>
+		<section>
+			<label for="">password</label>
+			<input name="password" type="password">
+		</section>
+		<section>
+			<label for="">email</label>
+			<input name="email" type="text">
+		</section>
+		<section>
+			<label for=""></label>
+			<input type="submit">
+		</section>
+	</form>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+	<script>
+		var form = document.querySelector("#registration")
+		form.addEventListener("submit", register)
+		function register(event){
+			event.preventDefault()
+
+			$.ajax({
+				url: "/registerNewUser/",
+				type:"POST",
+				async: false,
+				contentType: 'application/x-www-form-urlencoded',
+				data:$('form').serialize(),
+				dataType: 'text',
+				success: function(result){
+					console.log(result)
+					console.log("-------------")
+					dataResponseTemp = eval("[" + result + "]")
+					dataResponse = dataResponseTemp[0]
+				}
+			});
+		}
+	</script>
+</body>
+</html>
