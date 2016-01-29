@@ -1,5 +1,7 @@
 # -*- encoding: utf-8 -*-
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
@@ -9,16 +11,16 @@ from django.core import serializers
 import json
 import datetime
 
-
+@login_required
 def prueba(request,type):
-	if request.user.is_authenticated():
-		if(type == "apropiacion"):
-			context = {"pruebas":preguntas.objects.filter(competencia__nCompetencia="apropiacion")}
-		else:
-			context = {"pruebas":preguntas.objects.filter(competencia__nCompetencia="solucion")}
-		return render(request, 'prueba.html', context)
+	#if request.user.is_authenticated():
+	if(type == "apropiacion"):
+		context = {"pruebas":preguntas.objects.filter(competencia__nCompetencia="apropiacion")}
 	else:
-		return redirect("/login")
+		context = {"pruebas":preguntas.objects.filter(competencia__nCompetencia="solucion")}
+	return render(request, 'prueba.html', context)
+	#else:
+	#	return redirect("/login")
 
 def register(request):
 	return render(request, 'registation.html')
@@ -30,8 +32,7 @@ def registerNewUser(request):
 	user.first_name = data["nombre"]
 	user.last_name = data["apellido"]
 	user.save()
-	return redirect("/login")
-
+	return redirect("/login",user)
 
 @csrf_exempt
 def save(req):

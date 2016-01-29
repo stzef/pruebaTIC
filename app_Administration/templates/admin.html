@@ -1,0 +1,59 @@
+{% extends "templateAdmin.html" %}
+
+{% block title %} Admin {% endblock title %}
+
+{% block contentSpecial %}
+{% endblock  %}
+
+{% block content %}
+<form action="" id="historyUser">
+	<legend>Historial por Usuario</legend>
+	<select name="user" id="user">
+		{% for usuario in users %}
+		<option value="{{usuario.pk}}">{{usuario.username}}</option>
+		{% endfor %}
+	</select>
+	<input type="submit">
+</form>
+<table id="THistoryUser">
+	<thead>
+		<tr>
+			<th>idPrueba</th>
+			<th>idUsuario</th>
+			<th>fhPrueba</th>
+			<th>tiUsuario</th>
+			<th>edades</th>
+			<th>email</th>
+			<tr>
+			</thead>
+			<tbody>
+
+			</tbody>
+		</table>
+
+		<script>
+
+			$('#historyUser').submit(
+				(event)=>{
+					event.preventDefault()
+					$.ajax({
+						url: "historyUser/",
+						type:"POST",
+						async: false,
+						contentType: 'application/x-www-form-urlencoded',
+						data:$('#historyUser').serialize(),
+						dataType: 'text',
+						success: function(result){
+
+							$('#THistoryUser tbody').empty().append(result);
+
+							console.log(result)
+							console.log("-------------")
+							dataResponseTemp = eval("[" + result + "]")
+							dataResponse = dataResponseTemp[0]
+						}
+					});
+				}
+				)
+		</script>
+		{% endblock  %}

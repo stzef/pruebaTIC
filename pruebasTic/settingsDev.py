@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_URL = "/"
-LOGIN_URL = "/"
+LOGIN_URL = "/login"
 
 # Application definition
 
@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     'livereload',
     'app_Informacion',
     'app_Pruebas',
+    'app_Administration',
 )
 
 MIDDLEWARE_CLASSES = (
