@@ -1,26 +1,27 @@
 from django.db import models
 
 class tiUsuario(models.Model):
-	idTiUsuario = models.IntegerField(primary_key=True)
+	idTiUsuario = models.AutoField(primary_key=True, unique=True)
 	nTiUsuario = models.CharField(max_length=80)
 	def __str__(self):
 		return u'%s' % (self.nTiUsuario)
 
 class niveles(models.Model):
-	idNivel = models.IntegerField(primary_key=True)
+	idNivel = models.AutoField(primary_key=True, unique=True)
 	nNivel = models.CharField(max_length=45)
 	descriNivel = models.CharField(max_length=200)
 	def __str__(self):
 		return u'%s' % (self.nNivel)
 
 class edades(models.Model):
-	idEdad = models.IntegerField(primary_key=True)
+	idEdad = models.AutoField(primary_key=True, unique=True)
 	edadInicial = models.IntegerField()
 	edadFinal = models.IntegerField()
 
 
 class pruebas(models.Model):
-	idPrueba = models.IntegerField(primary_key=True)
+	idPrueba = models.AutoField(primary_key=True, unique=True)
+	idUsuario = models.IntegerField()
 	fhPrueba = models.DateField()
 	tiUsuario = models.ForeignKey(tiUsuario)
 	edades = models.ForeignKey(edades)
@@ -28,20 +29,20 @@ class pruebas(models.Model):
 
 
 class tipoPregunta(models.Model):
-	idTiPregunta = models.IntegerField(primary_key=True)
+	idTiPregunta = models.AutoField(primary_key=True, unique=True)
 	nTiPregunta = models.CharField(max_length=100)
 	def __str__(self):
 		return u'%s' % (self.nTiPregunta)
 
 class competencias(models.Model):
-	idCompetencias = models.IntegerField(primary_key=True)
+	idCompetencias = models.AutoField(primary_key=True, unique=True)
 	nCompetencia = models.CharField(max_length=80)
 	descriCompetencia = models.CharField(max_length=300)
 	def __str__(self):
 		return u'%s' % (self.nCompetencia)
 
 class preguntas(models.Model):
-	idPregrunta = models.IntegerField(primary_key=True)
+	idPregrunta = models.AutoField(primary_key=True, unique=True)
 	detaPregunta = models.TextField(max_length=400)
 	valorGanador = models.IntegerField()
 	tipoPregunta = models.ForeignKey(tipoPregunta)
@@ -52,13 +53,13 @@ class preguntas(models.Model):
 		return u'%s' % ("pregunta #" + str(self.idPregrunta) + " - Competencia " + str(self.competencia))
 
 class respuestas(models.Model):
-	idRespuestas = models.IntegerField(primary_key=True)
+	idRespuestas = models.AutoField(primary_key=True, unique=True)
 	detaRespuestas = models.CharField(max_length=45)
 	preguntas = models.ForeignKey(preguntas)
 
 
 class recomendaciones(models.Model):
-	idRecomendacion = models.IntegerField(primary_key=True)
+	idRecomendacion = models.AutoField(primary_key=True, unique=True)
 	detaRecomendacion = models.CharField(max_length=200)
 	preguntas = models.ForeignKey(preguntas)
 	valorNecesario = models.CharField(max_length=20)
@@ -66,7 +67,7 @@ class recomendaciones(models.Model):
 		return u'%s' % ("Recomendacion --> " + str(self.preguntas))
 
 class pruebasDeta(models.Model):
-	itpruebasdeta = models.IntegerField(primary_key=True)
+	itpruebasdeta = models.AutoField(primary_key=True, unique=True)
 	pruebas = models.ForeignKey(pruebas)
 	preguntas = models.ForeignKey(preguntas)
 	valoralcanzado = models.IntegerField()

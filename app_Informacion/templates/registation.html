@@ -3,33 +3,46 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Registro</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
 </head>
 <body>
-	<form action="" id="registration">
-		<section>
-			<label for="">usuario</label>
-			<input name="usuario" type="text">
-		</section>
-		<section>
-			<label for="">nombre</label>
-			<input name="nombre" type="text">
-		</section>
-		<section>
-			<label for="">apellido</label>
-			<input name="apellido" type="text">
-		</section>
-		<section>
-			<label for="">password</label>
-			<input name="password" type="password">
-		</section>
-		<section>
-			<label for="">email</label>
-			<input name="email" type="text">
-		</section>
-		<section>
-			<label for=""></label>
-			<input type="submit">
-		</section>
+	<form action="" class="form-horizontal" id="registration">
+		<div class="form-group">
+			<label for="inputEmail3" class="col-sm-1 control-label">Usuario</label>
+			<div class="col-sm-10">
+				<input type="email" class="form-control" name="usuario" id="inputEmail3" placeholder="Usuario">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputEmail3" class="col-sm-1 control-label">Nombre</label>
+			<div class="col-sm-10">
+				<input type="email" class="form-control" name="nombre" id="inputEmail3" placeholder="Nombre">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputEmail3" class="col-sm-1 control-label">Apellido</label>
+			<div class="col-sm-10">
+				<input type="email" class="form-control" name="apellido" id="inputEmail3" placeholder="Apellido">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputEmail3" class="col-sm-1 control-label">Password</label>
+			<div class="col-sm-10">
+				<input type="password" class="form-control" name="password" id="inputEmail3" placeholder="Password">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputEmail3" class="col-sm-1 control-label">Email</label>
+			<div class="col-sm-10">
+				<input type="password" class="form-control" name="email" id="inputEmail3" placeholder="Email">
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button type="submit" class="btn btn-success">Registrarse</button>
+			</div>
+		</div>
 	</form>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 

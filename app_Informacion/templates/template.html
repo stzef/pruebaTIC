@@ -7,8 +7,6 @@
 	<title>
 		{% block title %}{% endblock title %}
 	</title>
-
-
 </head>
 
 <body class="totalbody">
@@ -19,7 +17,9 @@
 
 		<ul>
 			{% if user.is_authenticated %}
-			<li>Hola <strong>{{ user.pk }}</strong></li>
+			<li>
+				<p>Hola, <strong>{{ user.username }}</strong></p>
+			</li>
 			<li><a href="{% url 'logout' %}" class="btn btnCancelar">Salir</a></li>
 			{% else %}
 			<li><a href="{% url 'register' %}" class="btn btnConfirmar">Registrarme</a></li>

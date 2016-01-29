@@ -26,7 +26,6 @@ def register(request):
 @csrf_exempt
 def registerNewUser(request):
 	data = request.POST
-	print(data["nombre"])
 	user = User.objects.create_user(data["usuario"], data["email"], data["password"])
 	user.first_name = data["nombre"]
 	user.last_name = data["apellido"]
@@ -46,30 +45,31 @@ def save(req):
 			responseUser = json.loads(data["responseUser"])
 			idsPruebas = data["idsPruebas"]
 
+			objPruebas = pruebas(
+				idUsuario = req.user.pk,
+				fhPrueba = datetime.datetime.now(),
+				tiUsuario = tiUsuario(
+					idTiUsuario = 1,
+					nTiUsuario = ""
+				),
+				edades = edades(
+					idEdad = 1,
+					edadInicial = 1,
+					edadFinal =1
+				),
+				email = req.user.email
+			)
+			objPruebas.save()
+			print objPruebas
+			print "--------------------------"
+			print objPruebas.pk
+			print objPruebas.idPrueba
+
 			for obj in responseUser:
 
 				idP = int(obj["idPregunta"])
 				query = preguntas.objects.get(pk=idP)
 				vG = int(query.valorGanador)
-
-				objPruebas = pruebas(
-					idPrueba = idP,
-					fhPrueba = datetime.datetime.now(),
-					tiUsuario = tiUsuario(
-						idTiUsuario = 1,
-						nTiUsuario = ""
-					),
-					edades = edades(
-						idEdad = 1,
-						edadInicial = 1,
-						edadFinal =1
-					),
-					email = ""
-				)
-
-				objPruebas.save()
-
-
 
 				if obj['tipoPregunta'] == "seleccion":
 					puntaje = int(obj['puntaje'])
@@ -92,6 +92,14 @@ def save(req):
 				texto.append(query.detaPregunta)
 				clases.append(classCss)
 
+				objPruebasDeta = pruebasDeta(
+					pruebas = objPruebas,
+					preguntas = query,
+					valoralcanzado = puntaje,
+					valorganador = vG
+				)
+				objPruebasDeta.save()
+
 			dataResponse = {
 				"r":recomendacionesPrueba,
 				"t":texto,
@@ -100,8 +108,3 @@ def save(req):
 			dataR = json.dumps(dataResponse)
 
 			return HttpResponse(dataR, content_type='application/json')
-
-
-
-
-
