@@ -69,7 +69,7 @@ class recomendaciones(models.Model):
 		return u'%s' % ("Recomendacion --> " + str(self.preguntas))
 
 class pruebasDeta(models.Model):
-	itpruebasdeta = models.AutoField(primary_key=True, unique=True)
+	idpruebasdeta = models.AutoField(primary_key=True, unique=True)
 	pruebas = models.ForeignKey(pruebas)
 	preguntas = models.ForeignKey(preguntas)
 	valoralcanzado = models.IntegerField()

@@ -69,7 +69,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='pruebasDeta',
             fields=[
-                ('itpruebasdeta', models.IntegerField(serialize=False, primary_key=True)),
+                ('idpruebasdeta', models.IntegerField(serialize=False, primary_key=True)),
                 ('valoralcanzado', models.IntegerField()),
                 ('valorganador', models.IntegerField()),
                 ('preguntas', models.ForeignKey(to='app_Pruebas.preguntas')),
