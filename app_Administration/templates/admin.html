@@ -6,31 +6,61 @@
 {% endblock  %}
 
 {% block content %}
-<form action="" id="historyUser">
+
+<form id="historyUser">
 	<legend>Historial por Usuario</legend>
-	<select name="user" id="user">
-		{% for usuario in users %}
-		<option value="{{usuario.pk}}">{{usuario.username}}</option>
-		{% endfor %}
-	</select>
-	<input type="submit">
+
+	<div class="form-group">
+		<label for="user">Usuario</label>
+		<select name="user" id="user" class="form-control">
+			{% for usuario in users %}
+			<option value="{{usuario.pk}}">{{usuario.username}}</option>
+			{% endfor %}
+		</select>
+	</div>
+
+	<div class="form-group">
+		<label for="">Fecha Incial</label>
+		<input type="date" name="fini" class="form-control" >
+	</div>
+	<div class="form-group">
+		<label for="">Fecha Final</label>
+		<input type="date" name="ffin" class="form-control" >
+	</div>
+	<input type="submit" class="btn btn-primary" value="Generar">
 </form>
-<table id="THistoryUser">
-	<thead>
-		<tr>
-			<th>idPrueba</th>
-			<th>idUsuario</th>
-			<th>fhPrueba</th>
-			<th>tiUsuario</th>
-			<th>edades</th>
-			<th>email</th>
-			<tr>
-			</thead>
-			<tbody>
 
-			</tbody>
-		</table>
 
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+
+				<h4 class="modal-title text-center" id="myModalLabel"><strong>Resultados</strong></h4>
+			</div>
+			<div class="modal-body">
+				<h1></h1>
+				<table class="table-bordered table-striped table table-hover" id="THistoryUser" >
+					<thead>
+						<tr>
+							<th>Cod Prueba</th>
+							<th>idUsuario</th>
+							<th>Fecha</th>
+							<th>Puntaje</th>
+							<tr>
+							</thead>
+							<tbody>
+
+							</tbody>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+
+					</div>
+				</div>
+			</div>
+		</div>
 		<script>
 
 			$('#historyUser').submit(
@@ -44,13 +74,15 @@
 						data:$('#historyUser').serialize(),
 						dataType: 'text',
 						success: function(result){
-
-							$('#THistoryUser tbody').empty().append(result);
-
-							console.log(result)
-							console.log("-------------")
-							dataResponseTemp = eval("[" + result + "]")
-							dataResponse = dataResponseTemp[0]
+							var response = JSON.parse(result)
+							if (response.ifEmpty){
+								$('#THistoryUser tbody').empty()
+								$('.modal-body h1').empty().append("No pruebas realidas en el rango de tiempo escogido");
+							}else{
+								$('.modal-body h1').empty()
+								$('#THistoryUser tbody').empty().append(response.content);
+							}
+							$('#myModal').modal('show')
 						}
 					});
 				}

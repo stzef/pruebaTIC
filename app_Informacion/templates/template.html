@@ -3,7 +3,9 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
 	<link rel="stylesheet" href="/public/min/css/styles.css">
+
 	<title>
 		{% block title %}{% endblock title %}
 	</title>
@@ -12,22 +14,27 @@
 <body class="totalbody">
 	<nav>
 		<ul>
-			<li><a href="{% url 'inicio' %}" class="logoPruebaTIC">PruebaTIC</a></li>
+			<li><a href="{% url 'inicio' %}" class="logoPruebaTIC"><h1>PruebaTIC</h1></a></li>
 		</ul>
 
 		<ul>
 			{% if user.is_authenticated %}
+
 			<li>
-				<p>Hola, <strong>{{ user.username }}</strong></p>
-				{% if user.is_superuser%}
-				<p><strong>SuperUser</strong></p>
+				<p>Hola, <strong>{{ user.username }}</strong>
+					{% if user.is_superuser%}
+					<strong> - SuperUser</strong>
+				</p>
 				<p><a href="{% url 'admin' %}">Administacion</a></p>
 				{% endif %}
 			</li>
 			<li><a href="{% url 'logout' %}" class="btn btnCancelar">Salir</a></li>
+
 			{% else %}
+
 			<li><a href="{% url 'register' %}" class="btn btnConfirmar">Registrarme</a></li>
 			<li><a href="{% url 'login' %}" class="btn btnEnviar">Ingresar</a></li>
+
 			{% endif %}
 		</ul>
 
@@ -54,5 +61,8 @@
 		</ul>
 	</footer>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
 
 </html>

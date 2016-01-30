@@ -1,56 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Registro</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+{% extends "template.html" %}
+{%block content%}
+<div class="alert ">
+	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	<p></p>
+</div>
+<form action="" class="form-horizontal" id="registration">
+	<legend>Registrate</legend>
+	<div class="form-group">
+		<label for="" class="col-sm-4 control-label">Usuario</label>
+		<div class="col-sm-7">
+			<input type="text" class="form-control" name="usuario" id="" placeholder="Usuario">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="" class="col-sm-4 control-label">Nombre</label>
+		<div class="col-sm-7">
+			<input type="text" class="form-control" name="nombre" id="" placeholder="Nombre">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="" class="col-sm-4 control-label">Apellido</label>
+		<div class="col-sm-7">
+			<input type="text" class="form-control" name="apellido" id="" placeholder="Apellido">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="" class="col-sm-4 control-label">Contraseña</label>
+		<div class="col-sm-7">
+			<input type="password" class="form-control" name="password" id="" placeholder="Password">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="confirmPassword" class="col-sm-4 control-label">Confirmar Contraseña</label>
+		<div class="col-sm-7">
+			<input type="password" class="form-control" name="confirmPassword" id="" placeholder="Password">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="" class="col-sm-4 control-label">Email</label>
+		<div class="col-sm-7">
+			<input type="email" class="form-control" name="email" id="" placeholder="Email">
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-7">
+			<button type="submit" class="btn btn-success">Registrarse</button>
+		</div>
+	</div>
+</form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-</head>
-<body>
-	<form action="" class="form-horizontal" id="registration">
-		<div class="form-group">
-			<label for="inputEmail3" class="col-sm-1 control-label">Usuario</label>
-			<div class="col-sm-10">
-				<input type="text" class="form-control" name="usuario" id="inputEmail3" placeholder="Usuario">
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="inputEmail3" class="col-sm-1 control-label">Nombre</label>
-			<div class="col-sm-10">
-				<input type="text" class="form-control" name="nombre" id="inputEmail3" placeholder="Nombre">
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="inputEmail3" class="col-sm-1 control-label">Apellido</label>
-			<div class="col-sm-10">
-				<input type="text" class="form-control" name="apellido" id="inputEmail3" placeholder="Apellido">
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="inputEmail3" class="col-sm-1 control-label">Password</label>
-			<div class="col-sm-10">
-				<input type="password" class="form-control" name="password" id="inputEmail3" placeholder="Password">
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="inputEmail3" class="col-sm-1 control-label">Email</label>
-			<div class="col-sm-10">
-				<input type="email" class="form-control" name="email" id="inputEmail3" placeholder="Email">
-			</div>
-		</div>
-		<div class="form-group">
-			<div class="col-sm-offset-2 col-sm-10">
-				<button type="submit" class="btn btn-success">Registrarse</button>
-			</div>
-		</div>
-	</form>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
-	<script>
-		var form = document.querySelector("#registration")
-		form.addEventListener("submit", register)
-		function register(event){
-			event.preventDefault()
+<script>
+	var form = document.querySelector("#registration")
+	form.addEventListener("submit", register)
+	function register(event){
+		event.preventDefault()
+		if (form.password.value == form.confirmPassword.value) {
 
 			$.ajax({
 				url: "/registerNewUser/",
@@ -60,13 +65,25 @@
 				data:$('form').serialize(),
 				dataType: 'text',
 				success: function(result){
-					console.log(result)
-					console.log("-------------")
-					dataResponseTemp = eval("[" + result + "]")
-					dataResponse = dataResponseTemp[0]
+					response = JSON.parse(result)
+					if (response.code == 1){
+						$(".alert").addClass("alert-success")
+						$(".alert > p").html(response.message)
+						setTimeout(function(){
+							window.location.href = "/login"
+
+						}, 2000)
+					}else if (response.code == 0) {
+						$(".alert").addClass("alert-danger")
+						$(".alert > p").html(response.message)
+					}
+
 				}
 			});
+		}else{
+			console.log("contraseñas erroneas contaseña")
 		}
-	</script>
-</body>
-</html>
+
+	}
+</script>
+{%endblock%}

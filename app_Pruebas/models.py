@@ -26,6 +26,8 @@ class pruebas(models.Model):
 	tiUsuario = models.ForeignKey(tiUsuario)
 	edades = models.ForeignKey(edades)
 	email = models.CharField(max_length=100)
+	def __str__(self):
+		return u'%s' % ("prueba #" + str(self.idPrueba))
 
 
 class tipoPregunta(models.Model):
@@ -72,3 +74,5 @@ class pruebasDeta(models.Model):
 	preguntas = models.ForeignKey(preguntas)
 	valoralcanzado = models.IntegerField()
 	valorganador = models.IntegerField()
+	def __str__(self):
+		return u'%s' % ("prueba deta #" + str(self.pruebas) + " - pregunta " + str(self.preguntas))

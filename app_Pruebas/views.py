@@ -13,14 +13,11 @@ import datetime
 
 @login_required
 def prueba(request,type):
-	#if request.user.is_authenticated():
 	if(type == "apropiacion"):
 		context = {"pruebas":preguntas.objects.filter(competencia__nCompetencia="apropiacion")}
 	else:
 		context = {"pruebas":preguntas.objects.filter(competencia__nCompetencia="solucion")}
 	return render(request, 'prueba.html', context)
-	#else:
-	#	return redirect("/login")
 
 def register(request):
 	return render(request, 'registation.html')
@@ -28,11 +25,27 @@ def register(request):
 @csrf_exempt
 def registerNewUser(request):
 	data = request.POST
-	user = User.objects.create_user(data["usuario"], data["email"], data["password"])
-	user.first_name = data["nombre"]
-	user.last_name = data["apellido"]
-	user.save()
-	return redirect("/login",user)
+	response = {}
+	try:
+		user = User.objects.create_user(data["usuario"], data["email"], data["password"])
+		user.first_name = data["nombre"]
+		user.last_name = data["apellido"]
+		user.save()
+		response["message"] = "Correcto, puedes continuar"
+		response["code"] = 1
+		print response
+		return HttpResponse(json.dumps(response),content_type='application/json')
+
+	except Exception, e:
+		if 'UNIQUE' in e.message:
+			response["message"] = "El nombre de usuario no esta disponible"
+			response["code"] = 0
+		else:
+			response["message"] = "Error, Comunicarse con el administrador"
+			response["code"] = 0
+			print response
+		return HttpResponse(json.dumps(response),content_type='application/json')
+
 
 @csrf_exempt
 def save(req):
@@ -61,10 +74,6 @@ def save(req):
 				email = req.user.email
 			)
 			objPruebas.save()
-			print objPruebas
-			print "--------------------------"
-			print objPruebas.pk
-			print objPruebas.idPrueba
 
 			for obj in responseUser:
 

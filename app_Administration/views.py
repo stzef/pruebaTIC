@@ -5,40 +5,44 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
-
-
-
-
 from app_Pruebas.models import *
-
-
+import json
 
 @user_passes_test(lambda u: u.is_superuser)
 def indexAdmin(request):
 	users = User.objects.all()
-	print users
 	return render(request, 'admin.html',{"users":users})
 
 @csrf_exempt
 def historyUser(request):
 	data = request.POST
-	pruebasUser = pruebas.objects.filter(idUsuario=data["user"])
-	print pruebasUser
-	response = ""
+	pruebasUser = pruebas.objects.filter(Q(idUsuario=data["user"]) & Q(fhPrueba__range=(data["fini"], data["ffin"])))
+	if pruebasUser:
+		content = ""
+		for pruebaUser in pruebasUser:
+			template = "<tr><td>::idPrueba::</td><td>::idUsuario::</td><td>::fhPrueba::</td><td>::puntaje::</td><tr>"
 
-	for pruebaUser in pruebasUser:
-		template = "<tr><td>::idPrueba::</td><td>::idUsuario::</td><td>::fhPrueba::</td><td>::tiUsuario::</td><td>::edades::</td><td>::email::</td><tr>"
+			template = template.replace("::idPrueba::",str(pruebaUser.idPrueba))
+			template = template.replace("::idUsuario::",str(User.objects.get(pk=pruebaUser.idUsuario).username))
+			template = template.replace("::fhPrueba::",str(pruebaUser.fhPrueba))
 
-		template = template.replace("::prueba::",str(pruebaUser.idUsuario))
-		template = template.replace("::idPrueba::",str(pruebaUser.idPrueba))
-		template = template.replace("::idUsuario::",str(pruebaUser.idUsuario))
-		template = template.replace("::fhPrueba::",str(pruebaUser.fhPrueba))
-		#template = template.replace("::tiUsuario::",str(pruebaUser.tiUsuario))
-		#template = template.replace("::edades::",str(pruebaUser.edades))
-		template = template.replace("::email::",str(pruebaUser.email))
+			pruebasDetaUser = pruebasDeta.objects.filter(pruebas=pruebaUser.idPrueba)
 
-		response = response + template
+			correct = 0
+			total = 0
+			for pruebaDetaUser in pruebasDetaUser:
+				if pruebaDetaUser.valoralcanzado >= pruebaDetaUser.valorganador:
+					correct += 1
+				total += 1
 
-	return HttpResponse(response)
+			puntaje = str(correct) + "/" + str(total)
+
+			template = template.replace("::puntaje::",puntaje)
+
+			content = content + template
+		return HttpResponse(json.dumps({"content":content,"ifEmpty":False}),content_type='application/json')
+	else:
+		return HttpResponse(json.dumps({"content":{},"ifEmpty":True}),content_type='application/json')
+
 
 
