@@ -17,6 +17,8 @@ class edades(models.Model):
 	idEdad = models.AutoField(primary_key=True, unique=True)
 	edadInicial = models.IntegerField()
 	edadFinal = models.IntegerField()
+	def __str__(self):
+		return u'%s' % (str(self.edadInicial) + " - " + str(self.edadFinal))
 
 
 class pruebas(models.Model):
@@ -53,12 +55,6 @@ class preguntas(models.Model):
 
 	def __str__(self):
 		return u'%s' % ("pregunta #" + str(self.idPregrunta) + " - Competencia " + str(self.competencia))
-
-class respuestas(models.Model):
-	idRespuestas = models.AutoField(primary_key=True, unique=True)
-	detaRespuestas = models.CharField(max_length=45)
-	preguntas = models.ForeignKey(preguntas)
-
 
 class recomendaciones(models.Model):
 	idRecomendacion = models.AutoField(primary_key=True, unique=True)
