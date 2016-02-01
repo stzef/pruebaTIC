@@ -4,6 +4,54 @@
 	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 	<p></p>
 </div>
+<form class="form-horizontal" method="POST" id="registration">
+	{% csrf_token %}
+	<div class="form-group col-md-6">
+		<label>Apellidos:</label>
+		{% if form.lastname.errors %}
+		{{ form.lastname.errors }}
+		{% endif%}
+		{{  form.lastname }}
+	</div>
+	<div class="form-group col-md-6">
+		<label>Usuario:</label>
+		{% if form.username.errors %}
+		{{ form.username.errors }}
+		{% endif%}
+		{{  form.username }}
+	</div>
+	<div class="form-group col-md-6">
+		<label>Correo Electrónico:</label>
+		{% if form.email.errors %}
+		{{ form.email.errors }}
+		{% endif%}
+		{{  form.email }}
+	</div>
+	<div class="form-group col-md-6">
+		<label>Contraseña:</label>
+		{{  form.password }}
+	</div>
+	<div class="form-group col-md-6">
+		<label>Confirme la Contraseña:</label>
+		{{  form.password_confirm }}
+		<div class="notify"></div>
+	</div>
+	<div class="form-group col-md-6">
+		<label>Fecha Nacimiento:</label>
+		{% if form.fNaci.errors %}
+		{{ form.fNaci.errors }}
+		{% endif%}
+		{{  form.fNaci }}
+	</div>
+	<div class="form-group col-md-6">
+		<label>Sexo:</label>
+		{{  form.residencia }}
+	</div>
+	<input class="btn btn-success btn-lg btn-block" type="submit" id="submit" value="Registrarme">
+	<a href="{% url 'inicio' %}" class="btn btn-danger btn-lg btn-block">Cancelar</a>
+
+</form>
+<!--
 <form action="" class="form-horizontal" id="registration">
 	<legend>Registrate</legend>
 	<div class="form-group">
@@ -48,11 +96,12 @@
 		</div>
 	</div>
 </form>
+-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 <script>
 	var form = document.querySelector("#registration")
-	form.addEventListener("submit", register)
+	/*form.addEventListener("submit", register)
 	function register(event){
 		event.preventDefault()
 		if (form.password.value == form.confirmPassword.value) {
@@ -73,17 +122,17 @@
 							window.location.href = "/login"
 
 						}, 2000)
-					}else if (response.code == 0) {
-						$(".alert").addClass("alert-danger")
-						$(".alert > p").html(response.message)
-					}
+}else if (response.code == 0) {
+	$(".alert").addClass("alert-danger")
+	$(".alert > p").html(response.message)
+}
 
-				}
-			});
-		}else{
-			console.log("contraseñas erroneas contaseña")
-		}
+}
+});
+}else{
+	console.log("contraseñas erroneas contaseña")
+}
 
-	}
+}*/
 </script>
 {%endblock%}

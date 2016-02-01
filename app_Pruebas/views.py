@@ -1,15 +1,18 @@
 # -*- encoding: utf-8 -*-
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
 
-from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.views.decorators.csrf import csrf_exempt
-from models import *
-from django.db.models import Q
 from django.core import serializers
-import json
+from django.db.models import Q
+from django.http import HttpResponse
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect, render_to_response
+from django.views.decorators.csrf import csrf_exempt
+from django.views.generic import FormView
+from forms import registroForm
+from models import *
 import datetime
+import json
 
 @login_required
 def prueba(request,type):
@@ -21,6 +24,18 @@ def prueba(request,type):
 
 def register(request):
 	return render(request, 'registation.html')
+
+class registroView(FormView):
+	form_class = registroForm
+	template_name = 'registation.html'
+	success_url = '/'
+
+	def form_valid(self,form):
+		form.save()
+		return HttpResponseRedirect(self.get_success_url())
+
+	def form_invalid(self, form):
+		return self.render_to_response(self.get_context_data(form=form))
 
 @csrf_exempt
 def registerNewUser(request):

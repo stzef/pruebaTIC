@@ -1,4 +1,16 @@
 from django.db import models
+from django.contrib.auth.models import User
+
+RESIDENSIAS_OPCIONES = (
+	('R','Ricarute'),
+	('G','Girardot'),
+	('O','Otro'),
+)
+
+class UserApp(models.Model):
+	user = models.OneToOneField(User, on_delete = models.CASCADE)
+	fNaci = models.DateField()
+	residencia = models.CharField(max_length=15,choices=RESIDENSIAS_OPCIONES,default='Girardot')
 
 class tiUsuario(models.Model):
 	idTiUsuario = models.AutoField(primary_key=True, unique=True)
@@ -25,9 +37,6 @@ class pruebas(models.Model):
 	idPrueba = models.AutoField(primary_key=True, unique=True)
 	idUsuario = models.IntegerField()
 	fhPrueba = models.DateField()
-	tiUsuario = models.ForeignKey(tiUsuario)
-	edades = models.ForeignKey(edades)
-	email = models.CharField(max_length=100)
 	def __str__(self):
 		return u'%s' % ("prueba #" + str(self.idPrueba))
 

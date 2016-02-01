@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from pruebasTic import settings
 
+
 # Create your views here.
 
 def inicio(request):
@@ -11,3 +12,5 @@ def inicio(request):
 
 def competencias(request):
 	return render(request, 'competencias.html')
+
+
