@@ -6,12 +6,12 @@ class tiUsuario(models.Model):
 	def __str__(self):
 		return u'%s' % (self.nTiUsuario)
 
-class niveles(models.Model):
-	idNivel = models.AutoField(primary_key=True, unique=True)
-	nNivel = models.CharField(max_length=45)
-	descriNivel = models.CharField(max_length=200)
-	def __str__(self):
-		return u'%s' % (self.nNivel)
+#class niveles(models.Model):
+#	idNivel = models.AutoField(primary_key=True, unique=True)
+#	nNivel = models.CharField(max_length=45)
+#	descriNivel = models.CharField(max_length=200)
+#	def __str__(self):
+#		return u'%s' % (self.nNivel)
 
 class edades(models.Model):
 	idEdad = models.AutoField(primary_key=True, unique=True)

@@ -8,6 +8,7 @@
 {% block content %}
 
 <form id="historyUser">
+
 	<legend>Historial por Usuario</legend>
 
 	<div class="form-group">
@@ -23,10 +24,12 @@
 		<label for="">Fecha Incial</label>
 		<input type="date" name="fini" class="form-control" required>
 	</div>
+
 	<div class="form-group">
 		<label for="">Fecha Final</label>
 		<input type="date" name="ffin" class="form-control" required>
 	</div>
+
 	<input type="submit" class="btn btn-primary" value="Generar">
 </form>
 
@@ -35,7 +38,6 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-
 				<h4 class="modal-title text-center" id="myModalLabel"><strong>Resultados</strong></h4>
 			</div>
 			<div class="modal-body">

@@ -1,9 +1,8 @@
 {% extends "template.html" %}
 {%block content%}
-<div class="alert ">
-	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-	<p></p>
-</div>
+
+<section class="alerts"></section>
+
 <form action="" class="form-horizontal" id="registration">
 	<legend>Registrate</legend>
 	<div class="form-group">
@@ -51,7 +50,11 @@
 	<div class="form-group">
 		<label for="" class="col-sm-4 control-label">Residencia</label>
 		<div class="col-sm-7">
-			<input type="text" class="form-control" name="residencia" id="" placeholder="Residencia" required>
+			<select name="residencia" class="form-control">
+				<option value="G">Girardot</option>
+				<option value="R">Ricaurte</option>
+				<option value="O">Otro</option>
+			</select>
 		</div>
 	</div>
 	<div class="form-group">
@@ -68,8 +71,18 @@
 	form.addEventListener("submit", register)
 	function register(event){
 		event.preventDefault()
-		if (form.password.value == form.confirmPassword.value) {
 
+		var alert = $('<div>',{
+			'class':'alert'
+		}).append($('<a>',{
+			'href':'#',
+			'class':'close',
+			'data-dismiss':'alert',
+			'aria-label':'close',
+			'html':'&times;'
+		})).append('<p>')
+
+		if (form.password.value == form.confirmPassword.value) {
 			$.ajax({
 				url: "/registerNewUser/",
 				type:"POST",
@@ -79,22 +92,24 @@
 				dataType: 'text',
 				success: function(result){
 					response = JSON.parse(result)
+					$(".alerts").html("")
+					alert.children("p").html(response.message)
 					if (response.code == 1){
-						$(".alert").addClass("alert-success")
-						$(".alert > p").html(response.message)
+						alert.addClass("alert-success")
 						setTimeout(function(){
 							window.location.href = "/login"
-
 						}, 2000)
 					}else if (response.code == 0) {
-						$(".alert").addClass("alert-danger")
-						$(".alert > p").html(response.message)
+						alert.addClass("alert-danger")
 					}
+					$(".alerts").append(alert)
 
 				}
 			});
 		}else{
-			console.log("contraseñas erroneas contaseña")
+			alert.children("p").html("Las contraseñas no coinciden")
+			alert.addClass("alert-danger")
+			$(".alerts").append(alert)
 		}
 
 	}

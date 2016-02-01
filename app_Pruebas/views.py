@@ -1,15 +1,16 @@
 # -*- encoding: utf-8 -*-
-from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-
-from django.http import HttpResponse
 from django.contrib.auth.models import User
-from django.views.decorators.csrf import csrf_exempt
-from models import *
-from django.db.models import Q
 from django.core import serializers
-import json
+from django.db.models import Q
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.views.decorators.csrf import csrf_exempt
+
 import datetime
+import json
+
+from models import *
 
 @login_required
 def prueba(request,type):
@@ -33,17 +34,7 @@ def save(req):
 
 			objPruebas = pruebas(
 				idUsuario = req.user.pk,
-				fhPrueba = datetime.datetime.now(),
-				tiUsuario = tiUsuario(
-					idTiUsuario = 1,
-					nTiUsuario = ""
-				),
-				edades = edades(
-					idEdad = 1,
-					edadInicial = 1,
-					edadFinal =1
-				),
-				email = req.user.email
+				fhPrueba = datetime.datetime.now()
 			)
 			objPruebas.save()
 
