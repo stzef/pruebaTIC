@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'app_Informacion',
     'app_Pruebas',
     'app_Administration',
+    'app_Users',
 )
 
 MIDDLEWARE_CLASSES = (

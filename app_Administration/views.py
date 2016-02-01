@@ -1,12 +1,14 @@
-from django.shortcuts import render
-from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.models import User
-from django.http import HttpResponse
-from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
-from app_Pruebas.models import *
+from django.http import HttpResponse
+from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
+
 import json
+
+from app_Pruebas.models import *
+
 
 @user_passes_test(lambda u: u.is_superuser)
 def indexAdmin(request):
