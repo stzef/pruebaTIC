@@ -1,18 +1,15 @@
 # -*- encoding: utf-8 -*-
-
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
-from django.core import serializers
-from django.db.models import Q
+
 from django.http import HttpResponse
-from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect, render_to_response
+from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import FormView
-from forms import registroForm
 from models import *
-import datetime
+from django.db.models import Q
+from django.core import serializers
 import json
+import datetime
 
 @login_required
 def prueba(request,type):
@@ -25,18 +22,6 @@ def prueba(request,type):
 def register(request):
 	return render(request, 'registation.html')
 
-class registroView(FormView):
-	form_class = registroForm
-	template_name = 'registation.html'
-	success_url = '/'
-
-	def form_valid(self,form):
-		form.save()
-		return HttpResponseRedirect(self.get_success_url())
-
-	def form_invalid(self, form):
-		return self.render_to_response(self.get_context_data(form=form))
-
 @csrf_exempt
 def registerNewUser(request):
 	data = request.POST
@@ -46,12 +31,17 @@ def registerNewUser(request):
 		user.first_name = data["nombre"]
 		user.last_name = data["apellido"]
 		user.save()
+
+		perfil = UserApp(user = user,fNaci = data["fNaci"],residencia = data["residencia"])
+		perfil.save()
+
 		response["message"] = "Correcto, puedes continuar"
 		response["code"] = 1
 		print response
 		return HttpResponse(json.dumps(response),content_type='application/json')
 
 	except Exception, e:
+		print e
 		if 'UNIQUE' in e.message:
 			response["message"] = "El nombre de usuario no esta disponible"
 			response["code"] = 0
