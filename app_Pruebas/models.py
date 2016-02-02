@@ -4,7 +4,7 @@ class tiUsuario(models.Model):
 	idTiUsuario = models.AutoField(primary_key=True, unique=True)
 	nTiUsuario = models.CharField(max_length=80)
 	def __str__(self):
-		return u'%s' % (self.nTiUsuario)
+		return '%s' % (self.nTiUsuario)
 
 #class niveles(models.Model):
 #	idNivel = models.AutoField(primary_key=True, unique=True)
@@ -18,7 +18,7 @@ class edades(models.Model):
 	edadInicial = models.IntegerField()
 	edadFinal = models.IntegerField()
 	def __str__(self):
-		return u'%s' % (str(self.edadInicial) + " - " + str(self.edadFinal))
+		return '%s - %s' % (self.edadInicial,self.edadFinal)
 
 
 class pruebas(models.Model):
@@ -26,21 +26,21 @@ class pruebas(models.Model):
 	idUsuario = models.IntegerField()
 	fhPrueba = models.DateField()
 	def __str__(self):
-		return u'%s' % ("prueba #" + str(self.idPrueba))
+		return 'prueba # %s' % (self.idPrueba)
 
 
 class tipoPregunta(models.Model):
 	idTiPregunta = models.AutoField(primary_key=True, unique=True)
 	nTiPregunta = models.CharField(max_length=100)
 	def __str__(self):
-		return u'%s' % (self.nTiPregunta)
+		return '%s' % (self.nTiPregunta)
 
 class competencias(models.Model):
 	idCompetencias = models.AutoField(primary_key=True, unique=True)
 	nCompetencia = models.CharField(max_length=80)
 	descriCompetencia = models.CharField(max_length=300)
 	def __str__(self):
-		return u'%s' % (self.nCompetencia)
+		return '%s' % (self.nCompetencia)
 
 class preguntas(models.Model):
 	idPregrunta = models.AutoField(primary_key=True, unique=True)
@@ -51,7 +51,7 @@ class preguntas(models.Model):
 	competencia = models.ForeignKey(competencias)
 
 	def __str__(self):
-		return u'%s' % ("pregunta #" + str(self.idPregrunta) + " - Competencia " + str(self.competencia))
+		return u'pregunta # %s - Competencia %s' % (self.idPregrunta,self.competencia)
 
 class recomendaciones(models.Model):
 	idRecomendacion = models.AutoField(primary_key=True, unique=True)
@@ -59,7 +59,7 @@ class recomendaciones(models.Model):
 	preguntas = models.ForeignKey(preguntas)
 	valorNecesario = models.CharField(max_length=20)
 	def __str__(self):
-		return u'%s' % ("Recomendacion --> " + str(self.preguntas))
+		return 'Recomendacion -> %s' % (self.preguntas)
 
 class pruebasDeta(models.Model):
 	idpruebasdeta = models.AutoField(primary_key=True, unique=True)
@@ -68,4 +68,4 @@ class pruebasDeta(models.Model):
 	valoralcanzado = models.IntegerField()
 	valorganador = models.IntegerField()
 	def __str__(self):
-		return u'%s' % ("prueba deta #" + str(self.pruebas) + " - pregunta " + str(self.preguntas))
+		return 'prueba deta # %s - pregunta' % (self.pruebas,self.preguntas)

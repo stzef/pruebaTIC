@@ -14,16 +14,19 @@ def registerNewUser(request):
 	data = request.POST
 	response = {}
 	try:
-		user = User.objects.create_user(data["usuario"], data["email"], data["password"])
-		user.first_name = data["nombre"]
-		user.last_name = data["apellido"]
-		user.save()
+		if User.objects.filter(email= data["email"]).exists():
+			response["message"] = "El email no esta disponible"
+			response["code"] = 0
+		else:
+			user = User.objects.create_user(data["usuario"], data["email"], data["password"])
+			user.first_name = data["nombre"]
+			user.last_name = data["apellido"]
+			user.save()
 
-		perfil = UserApp(user = user,fNaci = data["fNaci"],residencia = data["residencia"])
-		perfil.save()
-
-		response["message"] = "Correcto, puedes continuar"
-		response["code"] = 1
+			perfil = UserApp(user = user,fNaci = data["fNaci"],residencia = data["residencia"])
+			perfil.save()
+			response["message"] = "Correcto, puedes continuar"
+			response["code"] = 1
 		print response
 		return HttpResponse(json.dumps(response),content_type='application/json')
 
